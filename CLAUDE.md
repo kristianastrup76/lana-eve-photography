@@ -17,16 +17,16 @@ step, look for a plain-CSS/JS way to do it first.
 ```
 index.html               Homepage: nav, hero, services, pricing, how-it-works,
                           about, testimonials, contact, footer
-gallery-baby.html         10-photo gallery + lightbox, Baby & Newborn session
-gallery-cakesmash.html    10-photo gallery + lightbox, Cakesmash 'n' Splash session
-gallery-family.html       10-photo gallery + lightbox, Family session
+gallery-baby.html         12-photo gallery + lightbox, Baby & Newborn session
+gallery-cakesmash.html    12-photo gallery + lightbox, Cakesmash 'n' Splash session
+gallery-family.html       12-photo gallery + lightbox, Family session
 styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
 images/                   Homepage photos (hero-photo.jpg, about-lana.jpg,
                           baby-card.jpg, cakesmash-card.jpg, family-card.jpg)
-images/baby/01.jpg..10.jpg        Gallery photos per session (see below)
-images/cakesmash/01.jpg..10.jpg
-images/family/01.jpg..10.jpg
+images/baby/01.jpg..12.jpg        Gallery photos per session (see below)
+images/cakesmash/01.jpg..12.jpg
+images/family/01.jpg..12.jpg
 README.md                 Handover notes, incl. open TODOs also listed below
 ```
 
@@ -93,12 +93,12 @@ new nav.
 - **Contact form has no backend.** The form in `index.html` (`action="#"`)
   doesn't send anywhere yet. It needs a real backend (Formspree, or
   similar) wired up before it's live-usable.
-- **Gallery photos are placeholders.** All 30 images under `images/baby/`,
+- **Gallery photos are placeholders.** All 36 images under `images/baby/`,
   `images/cakesmash/`, `images/family/` are generated gradient placeholder
   tiles labelled "Sample photo NN," not real photography. When the user
   provides real photos, replace files in place keeping the same filenames
-  (`01.jpg`–`10.jpg` per folder) — the gallery pages reference them by
-  path and need no HTML changes. If fewer than 10 real photos exist for a
+  (`01.jpg`–`12.jpg` per folder) — the gallery pages reference them by
+  path and need no HTML changes. If fewer than 12 real photos exist for a
   session, delete the unused numbered files AND remove the matching
   `<button>` block in that `gallery-*.html`.
 - **Domain is mid-transfer.** The domain is moving from Wix to Namecheap;

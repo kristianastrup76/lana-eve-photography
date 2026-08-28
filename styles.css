@@ -138,6 +138,9 @@ img { max-width: 100%; }
 .gallery-hero { padding: clamp(40px,6vw,64px) 0 clamp(32px,5vw,48px); display: flex; flex-direction: column; gap: 16px; max-width: 62ch; }
 .gallery-hero h1 { font-size: clamp(30px,3.6vw,42px); color: var(--ink-soft); }
 .gallery-hero p { font-size: 16.5px; line-height: 1.7; color: var(--body-text); }
+.gallery-topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 20px; }
+.gallery-back { color: var(--muted); }
+.gallery-back:hover { color: var(--accent); }
 .gallery-crumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
 .gallery-crumb a { color: var(--muted); }
 .gallery-crumb a:hover { color: var(--accent); }
