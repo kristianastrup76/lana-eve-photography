@@ -1,7 +1,8 @@
 # Lana Eve Photography — project context
 
-Static marketing site for a home-studio baby/newborn, cake smash, and family
-photographer in Kirkcaldy, Fife, Scotland. Read this before making changes.
+Static marketing site for a Kirkcaldy, Fife (Scotland) photographer offering
+six session types: Baby & Newborn, Cakesmash 'n' Splash, Family, School,
+Weddings, and Christmas mini sessions. Read this before making changes.
 
 ## Stack — deliberately minimal
 
@@ -20,20 +21,30 @@ index.html               Homepage: nav, hero, services, pricing, how-it-works,
 gallery-baby.html         12-photo gallery + lightbox, Baby & Newborn session
 gallery-cakesmash.html    12-photo gallery + lightbox, Cakesmash 'n' Splash session
 gallery-family.html       12-photo gallery + lightbox, Family session
+gallery-school.html       12-photo gallery + lightbox, School Sessions
+gallery-weddings.html     12-photo gallery + lightbox, Weddings
+gallery-christmas.html    12-photo gallery + lightbox, Christmas Sessions
 styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
-images/                   Homepage photos (hero-photo.jpg, about-lana.jpg,
-                          baby-card.jpg, cakesmash-card.jpg, family-card.jpg)
-images/baby/01.jpg..12.jpg        Gallery photos per session (see below)
-images/cakesmash/01.jpg..12.jpg
-images/family/01.jpg..12.jpg
+images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
+                          and one <session>-card.jpg (4:3) per service —
+                          baby-card.jpg, cakesmash-card.jpg, family-card.jpg
+                          are real photos; school-card.jpg, weddings-card.jpg,
+                          christmas-card.jpg are still placeholders
+images/<session>/01.jpg..12.jpg   12 gallery photos per session (4:5), one
+                          subfolder per service: baby, cakesmash, family,
+                          school, weddings, christmas
 README.md                 Handover notes, incl. open TODOs also listed below
 ```
 
 Every HTML page links the same `styles.css` and `script.js` — there is no
 per-page stylesheet or script. New pages should follow the same pattern:
 copy the header/footer markup from an existing page rather than inventing a
-new nav.
+new nav. The six gallery pages are generated from a consistent template
+(same header/footer, breadcrumb + Back button, `.gallery-grid` of 12
+`<button><img></button>` items, cross-links to the other five galleries at
+the bottom) — if you add a 7th service later, follow that same shape rather
+than improvising a new layout.
 
 ## Design system
 
@@ -54,27 +65,44 @@ new nav.
   and `.btn-secondary` (text link with icon).
 - **Grids that must not orphan a card**: `.three-col-grid` and
   `.four-col-grid` jump straight from full columns to a single (or 2-col)
-  stack at defined breakpoints — do NOT go back to `auto-fit`/`minmax` for
-  a 3- or 4-item grid, it leaves a lone card stranded on its own row at
-  tablet widths. This was a real bug, fixed once already; don't reintroduce
-  it.
+  stack at defined breakpoints — do NOT go back to `auto-fit`/`minmax`, it
+  leaves a lone card stranded on its own row at tablet widths. This was a
+  real bug, fixed once already; don't reintroduce it. Despite the class
+  name, `.three-col-grid` is used for the Services grid (now 6 cards, 2
+  rows) and the Pricing grid (also 6 cards) — the class just sets the
+  column count/breakpoint, it works fine for any multiple of 3.
 - **Breakpoints**: 900px is the main nav/layout breakpoint (desktop nav
   links hide, hamburger appears, 3-col grids go to 1 col); 620px is the
   secondary mobile breakpoint (4-col "how it works" grid goes to 1 col).
-- **Icons**: inline SVG only, stroke-based, no icon font, no emoji.
+- **Icons**: inline SVG only, stroke-based, one consistent style (stroke
+  width 1.5, 24×24 viewBox, no fill except small accent dots), no icon
+  font, no emoji. Each service card has one distinct icon: swaddled-baby
+  outline (Baby), cake (Cakesmash), two people (Family), graduation cap
+  (School), interlocking rings (Weddings), simple 3-line snowflake
+  (Christmas).
 - **Mobile nav**: hamburger toggle is vanilla JS (`script.js`), toggling
   `.is-open` classes on `#nav-toggle` and `#mobile-menu` — no framework
-  state, no external menu library.
+  state, no external menu library. The nav is deliberately short —
+  **Services / Pricing / About / Contact** — rather than one link per
+  session; it used to link each session individually but that stopped
+  scaling once there were six. Services (and their galleries) are reached
+  via the cards in the `#services` section, not the top nav.
 - **Gallery lightbox**: also vanilla JS in `script.js`, driven purely by
   the `<button>`/`<img>` markup inside `.gallery-grid` — works on any page
   that has both a `.gallery-grid` and a `#lightbox`. Keep new galleries
   consistent with this pattern instead of adding a lightbox library.
+- **Gallery Back button**: `.gallery-topbar` holds a "← Back" link
+  (`.gallery-back`, links to `index.html#services`) beside the breadcrumb.
+  Keep both on new/edited gallery pages.
 
 ## Business facts (don't invent alternatives to these)
 
 - Business: Lana Eve Photography, home studio in Kirkcaldy, Fife.
-- Three sessions only: **Baby & Newborn Photos**, **Cakesmash 'n' Splash**
-  (first birthday, mess-friendly, cake + splash), **Family Photos**.
+- Six sessions: **Baby & Newborn Photos**, **Cakesmash 'n' Splash** (first
+  birthday, mess-friendly, cake + splash), **Family Photos**, **School
+  Sessions** (nursery/school portrait days), **Weddings** (documentary-style,
+  custom-quoted — see below), **Christmas Sessions** (festive mini
+  sessions).
 - Contact: lana.astrupnielsen@googlemail.com, 07872 475731,
   @lana_eve_photography (Instagram), Lana Eve Photography (Facebook).
 - Tone: warm, boutique, unhurried — "quiet, unhurried moments," "no
@@ -84,23 +112,38 @@ new nav.
   Bobby Sword, Jordan Stark, Neil Williamson, Marin Dunsire) — don't
   paraphrase or invent new ones; only add reviews the user actually
   supplies verbatim.
+- **Weddings pricing is intentionally different**: instead of a flat
+  price + inclusions checklist like the other five, its pricing card shows
+  "Custom pricing" and a short paragraph pointing to "Get a custom quote."
+  Don't collapse it back into the flat-price format unless asked — weddings
+  genuinely don't fit that model (variable hours, one vs. two photographers,
+  album or not).
 
 ## Known open items (from the last handover — check before assuming done)
 
-- **Pricing is unset.** All three pricing cards in `index.html` show
-  `[Add your price]` as a bracketed placeholder. Don't invent a number —
-  leave the placeholder until the user gives a real price.
+- **Pricing is unset for 5 of 6 sessions.** Baby, Cakesmash, Family,
+  School, and Christmas pricing cards show `[Add your price]`; School and
+  Christmas also have `[Session length]` / `[Number]` placeholders in
+  their inclusions (their duration and image count were never specified,
+  unlike the other sessions). Weddings shows "Custom pricing" by design
+  (see above). Don't invent numbers — leave placeholders until the user
+  gives real ones.
 - **Contact form has no backend.** The form in `index.html` (`action="#"`)
   doesn't send anywhere yet. It needs a real backend (Formspree, or
-  similar) wired up before it's live-usable.
-- **Gallery photos are placeholders.** All 36 images under `images/baby/`,
-  `images/cakesmash/`, `images/family/` are generated gradient placeholder
-  tiles labelled "Sample photo NN," not real photography. When the user
-  provides real photos, replace files in place keeping the same filenames
-  (`01.jpg`–`12.jpg` per folder) — the gallery pages reference them by
-  path and need no HTML changes. If fewer than 12 real photos exist for a
-  session, delete the unused numbered files AND remove the matching
-  `<button>` block in that `gallery-*.html`.
+  similar) wired up before it's live-usable. Its session dropdown already
+  lists all six options.
+- **Gallery photos are placeholders — for all six sessions.** All 72
+  images under `images/<session>/` are generated gradient placeholder
+  tiles labelled "Sample photo NN," not real photography (Baby, Cakesmash
+  and Family were placeholders too until real photos were dropped in for
+  their *card* image only — their *gallery* photos are still all
+  placeholders). The three `-card.jpg` files for School, Weddings and
+  Christmas are also still placeholders. When the user provides real
+  photos, replace files in place keeping the same filenames (`01.jpg`–
+  `12.jpg` per gallery folder, or `<session>-card.jpg` for the homepage
+  card) — pages reference them by path and need no HTML changes. If fewer
+  than 12 real photos exist for a session, delete the unused numbered
+  files AND remove the matching `<button>` block in that `gallery-*.html`.
 - **Domain is mid-transfer.** The domain is moving from Wix to Namecheap;
   DNS hasn't been pointed at the hosting provider yet. Don't assume a
   custom domain is live — the site is currently only reachable at its
@@ -130,3 +173,11 @@ new nav.
 - Real content only: no lorem ipsum, no fabricated prices/addresses/facts
   — use a bracketed placeholder like `[Add your price]` for anything the
   user hasn't supplied yet, matching the existing placeholder style.
+- Adding a 7th service? Mirror the pattern used for School/Weddings/
+  Christmas: a service card (icon + copy + "View full gallery" +
+  "Enquire" links) in `#services`, a matching pricing card in `#pricing`,
+  a `gallery-<slug>.html` page (12 placeholder photos, Back button,
+  cross-links updated on *all* gallery pages, not just the new one), a
+  new `<option>` in the contact form's session dropdown, and placeholder
+  images generated in the same gradient-tile style so nothing looks
+  broken before real photos exist.
