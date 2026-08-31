@@ -24,6 +24,8 @@ gallery-family.html       12-photo gallery + lightbox, Family session
 gallery-school.html       12-photo gallery + lightbox, School Sessions
 gallery-weddings.html     12-photo gallery + lightbox, Weddings
 gallery-christmas.html    12-photo gallery + lightbox, Christmas Sessions
+backdrops.html            PRIVATE, unlisted backdrop chooser for booked
+                          clients only — see "Private pages" below
 styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
 images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
@@ -34,6 +36,8 @@ images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
 images/<session>/01.jpg..12.jpg   12 gallery photos per session (4:5), one
                           subfolder per service: baby, cakesmash, family,
                           school, weddings, christmas
+images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
+                          only by backdrops.html
 README.md                 Handover notes, incl. open TODOs also listed below
 ```
 
@@ -94,6 +98,35 @@ than improvising a new layout.
 - **Gallery Back button**: `.gallery-topbar` holds a "← Back" link
   (`.gallery-back`, links to `index.html#services`) beside the breadcrumb.
   Keep both on new/edited gallery pages.
+- **Backdrop grid**: `backdrops.html` reuses the gallery lightbox by giving
+  its grid *both* `gallery-grid` and `backdrop-grid` classes — `script.js`
+  only looks for `.gallery-grid`, and `.backdrop-grid`'s own rules (later
+  in `styles.css`, so they win the cascade) switch it to a 1:1 square
+  aspect ratio and a 5/3/2-column layout instead of the 4:5 portrait
+  4/3/2/2 layout the session galleries use. Each swatch has a numbered
+  `.backdrop-number` badge overlay (`position:absolute`, needs the button
+  to be `position:relative`, which `.backdrop-grid button` sets) — the
+  numbers are plain HTML text, not baked into the images, so they stay
+  crisp and are what clients reference when messaging their pick. If you
+  add more backdrop photos, keep filenames sequential (`11.jpg`, `12.jpg`,
+  …) and add a matching numbered button block.
+
+## Private pages (not linked from navigation)
+
+- **`backdrops.html`** is a backdrop chooser for clients who have already
+  booked — intentionally **not** linked from the homepage, nav, footer, or
+  any gallery page. It's reached only by a direct URL that Lana shares
+  herself (e.g. in a booking confirmation). It has
+  `<meta name="robots" content="noindex, nofollow">` in its `<head>` so
+  search engines don't index it either. It still uses the same
+  header/footer/fonts as the rest of the site for consistent branding —
+  "private" here means unlinked and unlisted, not a login-gated page;
+  don't add real authentication to it unless asked.
+- If asked to add another page like this (a proofing gallery, a private
+  pricing page for a specific client, etc.), follow the same pattern:
+  build it, don't link it from anywhere public, add the noindex meta tag,
+  and document it in this section so it isn't mistaken for a dead/
+  forgotten page later.
 
 ## Business facts (don't invent alternatives to these)
 
@@ -148,6 +181,13 @@ than improvising a new layout.
   DNS hasn't been pointed at the hosting provider yet. Don't assume a
   custom domain is live — the site is currently only reachable at its
   Vercel/Cloudflare Pages URLs.
+- **Backdrop swatches are placeholders too.** All 10 images in
+  `images/backdrops/` are generated plain gradient tiles (no session-style
+  label baked in — the number badge in the HTML does that job instead).
+  Swap them for real backdrop photos in place, same filenames (`01.jpg`–
+  `10.jpg`), same 1:1 square shape works best. Add/remove numbered
+  `<button>` blocks in `backdrops.html` to match however many real
+  backdrops actually exist.
 
 ## Deployment
 
