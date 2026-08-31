@@ -55,8 +55,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function close() {
     lightbox.classList.remove('is-open');
     document.body.style.overflow = '';
-    lbImg.src = '';
     if (lastFocused) lastFocused.focus();
+    // Clear the src after the fade-out finishes (styles.css .lightbox transition),
+    // so the image doesn't blank out mid-fade.
+    window.setTimeout(function () { lbImg.src = ''; }, 200);
   }
 
   buttons.forEach(function (btn, i) {
