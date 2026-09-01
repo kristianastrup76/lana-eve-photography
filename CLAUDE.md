@@ -56,7 +56,13 @@ rather than improvising a new layout.
 ## Design system
 
 - **Colors** (defined as CSS custom properties at the top of `styles.css`,
-  under `:root`): `--accent: #b6553c` (terracotta), `--ink: #3a2b23`,
+  under `:root`): `--accent: #b6553c` (terracotta), `--accent-text: #a54e35`
+  (darker terracotta, ~5.19:1 on cream — use for small accent-colored *text*
+  such as links, eyebrows, and the pricing table's price column, since
+  `--accent` itself only passes WCAG AA at large-text/UI-component size
+  (~4.46:1) and reads borderline for small text; `--accent` stays correct
+  for button backgrounds, icon strokes, borders, and focus outlines, which
+  only need to meet the 3:1 non-text/large-text threshold), `--ink: #3a2b23`,
   `--ink-soft: #33251d`, `--body-text: #5c4a3d`, `--muted: #6b5546`,
   `--cream: #fbf5ef` (page background), `--tan: #f4e5d8` (alternating
   section background), `--card-bg: #fffdfb`, `--border: #efe2d6`,
