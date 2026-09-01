@@ -1,8 +1,9 @@
 # Lana Eve Photography — project context
 
 Static marketing site for a Kirkcaldy, Fife (Scotland) photographer offering
-six session types: Baby & Newborn, Cakesmash 'n' Splash, Family, School,
-Weddings, and Christmas mini sessions. Read this before making changes.
+seven session types: Baby & Newborn, Cakesmash 'n' Splash, Family, Twins,
+School, Weddings, and Christmas mini sessions. Read this before making
+changes.
 
 ## Stack — deliberately minimal
 
@@ -21,6 +22,7 @@ index.html               Homepage: nav, hero, services, pricing, how-it-works,
 gallery-baby.html         12-photo gallery + lightbox, Baby & Newborn session
 gallery-cakesmash.html    12-photo gallery + lightbox, Cakesmash 'n' Splash session
 gallery-family.html       12-photo gallery + lightbox, Family session
+gallery-twins.html        12-photo gallery + lightbox, Twins
 gallery-school.html       12-photo gallery + lightbox, School Sessions
 gallery-weddings.html     12-photo gallery + lightbox, Weddings
 gallery-christmas.html    12-photo gallery + lightbox, Christmas Sessions
@@ -31,11 +33,12 @@ script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
 images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
                           and one <session>-card.jpg (4:3) per service —
                           baby-card.jpg, cakesmash-card.jpg, family-card.jpg
-                          are real photos; school-card.jpg, weddings-card.jpg,
-                          christmas-card.jpg are still placeholders
+                          are real photos; twins-card.jpg, school-card.jpg,
+                          weddings-card.jpg, christmas-card.jpg are still
+                          placeholders
 images/<session>/01.jpg..12.jpg   12 gallery photos per session (4:5), one
                           subfolder per service: baby, cakesmash, family,
-                          school, weddings, christmas
+                          twins, school, weddings, christmas
 images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
                           only by backdrops.html
 README.md                 Handover notes, incl. open TODOs also listed below
@@ -44,11 +47,11 @@ README.md                 Handover notes, incl. open TODOs also listed below
 Every HTML page links the same `styles.css` and `script.js` — there is no
 per-page stylesheet or script. New pages should follow the same pattern:
 copy the header/footer markup from an existing page rather than inventing a
-new nav. The six gallery pages are generated from a consistent template
+new nav. The seven gallery pages are generated from a consistent template
 (same header/footer, breadcrumb + Back button, `.gallery-grid` of 12
-`<button><img></button>` items, cross-links to the other five galleries at
-the bottom) — if you add a 7th service later, follow that same shape rather
-than improvising a new layout.
+`<button><img></button>` items, cross-links to the other six galleries at
+the bottom) — if you add an 8th service later, follow that same shape
+rather than improvising a new layout.
 
 ## Design system
 
@@ -67,23 +70,35 @@ than improvising a new layout.
   padding via `clamp()`. Cards use `.card` (white background, 1px border,
   18px radius). Buttons are `.btn-primary` (solid pill, accent background)
   and `.btn-secondary` (text link with icon).
-- **Grids that must not orphan a card**: `.three-col-grid` and
-  `.four-col-grid` jump straight from full columns to a single (or 2-col)
-  stack at defined breakpoints — do NOT go back to `auto-fit`/`minmax`, it
-  leaves a lone card stranded on its own row at tablet widths. This was a
-  real bug, fixed once already; don't reintroduce it. Despite the class
-  name, `.three-col-grid` is used for the Services grid (now 6 cards, 2
-  rows) and the Pricing grid (also 6 cards) — the class just sets the
-  column count/breakpoint, it works fine for any multiple of 3.
+- **Grids that must not orphan a card**: `.four-col-grid` is still a CSS
+  grid (`repeat(4, minmax(0,1fr))`) that jumps straight from 4 columns to
+  2 to 1 at defined breakpoints — do NOT switch it to `auto-fit`/`minmax`,
+  it leaves a lone card stranded on its own row at tablet widths. That was
+  a real bug, fixed once already; don't reintroduce it.
+- **`.three-col-grid` is flexbox, not CSS grid** — changed when the 7th
+  service (Twins) made the card count stop being a multiple of 3. It's
+  `display:flex; flex-wrap:wrap; justify-content:center` with each child
+  sized to `calc((100% - 56px) / 3)` (3 per row, 28px gaps) so it still
+  *looks* like a 3-column grid, but any remainder card (currently the 7th,
+  Twins, in both the Services and Pricing sections) centers itself on its
+  own row at full card width instead of sitting left-aligned with empty
+  space beside it, which is what a plain `grid-template-columns:
+  repeat(3,...)` would do. At ≤900px each child goes to `flex-basis:100%`
+  for the single-column stack (same visual result as before). If you add
+  an 8th service, this needs no changes — it already handles any card
+  count gracefully. Despite the class name it's used for both the
+  Services grid and the Pricing grid.
 - **Breakpoints**: 900px is the main nav/layout breakpoint (desktop nav
   links hide, hamburger appears, 3-col grids go to 1 col); 620px is the
   secondary mobile breakpoint (4-col "how it works" grid goes to 1 col).
 - **Icons**: inline SVG only, stroke-based, one consistent style (stroke
   width 1.5, 24×24 viewBox, no fill except small accent dots), no icon
   font, no emoji. Each service card has one distinct icon: swaddled-baby
-  outline (Baby), cake (Cakesmash), two people (Family), graduation cap
-  (School), interlocking rings (Weddings), simple 3-line snowflake
-  (Christmas).
+  outline (Baby), cake (Cakesmash), two people (Family), two small
+  swaddled-baby bundles side by side (Twins — deliberately echoes the Baby
+  icon at smaller scale rather than reusing Weddings' rings or Family's
+  people shapes), graduation cap (School), interlocking rings (Weddings),
+  simple 3-line snowflake (Christmas).
 - **Mobile nav**: hamburger toggle is vanilla JS (`script.js`), toggling
   `.is-open` classes on `#nav-toggle` and `#mobile-menu` — no framework
   state, no external menu library. The nav is deliberately short —
@@ -131,11 +146,12 @@ than improvising a new layout.
 ## Business facts (don't invent alternatives to these)
 
 - Business: Lana Eve Photography, home studio in Kirkcaldy, Fife.
-- Six sessions: **Baby & Newborn Photos**, **Cakesmash 'n' Splash** (first
-  birthday, mess-friendly, cake + splash), **Family Photos**, **School
-  Sessions** (nursery/school portrait days), **Weddings** (documentary-style,
-  custom-quoted — see below), **Christmas Sessions** (festive mini
-  sessions).
+- Seven sessions: **Baby & Newborn Photos**, **Cakesmash 'n' Splash** (first
+  birthday, mess-friendly, cake + splash), **Family Photos**, **Twins**
+  (extra time built in for two, portraits together and individually),
+  **School Sessions** (nursery/school portrait days), **Weddings**
+  (documentary-style, custom-quoted — see below), **Christmas Sessions**
+  (festive mini sessions).
 - Contact: lana.astrupnielsen@googlemail.com, 07872 475731,
   @lana_eve_photography (Instagram), Lana Eve Photography (Facebook).
 - Tone: warm, boutique, unhurried — "quiet, unhurried moments," "no
@@ -154,24 +170,24 @@ than improvising a new layout.
 
 ## Known open items (from the last handover — check before assuming done)
 
-- **Pricing is unset for 5 of 6 sessions.** Baby, Cakesmash, Family,
-  School, and Christmas pricing cards show `[Add your price]`; School and
-  Christmas also have `[Session length]` / `[Number]` placeholders in
-  their inclusions (their duration and image count were never specified,
-  unlike the other sessions). Weddings shows "Custom pricing" by design
-  (see above). Don't invent numbers — leave placeholders until the user
-  gives real ones.
+- **Pricing is unset for 6 of 7 sessions.** Baby, Cakesmash, Family,
+  Twins, School, and Christmas pricing cards show `[Add your price]`;
+  Twins, School, and Christmas also have `[Session length]` / `[Number]`
+  placeholders in their inclusions (their duration and image count were
+  never specified, unlike Baby/Cakesmash/Family). Weddings shows "Custom
+  pricing" by design (see above). Don't invent numbers — leave
+  placeholders until the user gives real ones.
 - **Contact form has no backend.** The form in `index.html` (`action="#"`)
   doesn't send anywhere yet. It needs a real backend (Formspree, or
   similar) wired up before it's live-usable. Its session dropdown already
-  lists all six options.
-- **Gallery photos are placeholders — for all six sessions.** All 72
+  lists all seven options.
+- **Gallery photos are placeholders — for all seven sessions.** All 84
   images under `images/<session>/` are generated gradient placeholder
   tiles labelled "Sample photo NN," not real photography (Baby, Cakesmash
   and Family were placeholders too until real photos were dropped in for
   their *card* image only — their *gallery* photos are still all
-  placeholders). The three `-card.jpg` files for School, Weddings and
-  Christmas are also still placeholders. When the user provides real
+  placeholders). The four `-card.jpg` files for Twins, School, Weddings
+  and Christmas are also still placeholders. When the user provides real
   photos, replace files in place keeping the same filenames (`01.jpg`–
   `12.jpg` per gallery folder, or `<session>-card.jpg` for the homepage
   card) — pages reference them by path and need no HTML changes. If fewer
@@ -213,11 +229,13 @@ than improvising a new layout.
 - Real content only: no lorem ipsum, no fabricated prices/addresses/facts
   — use a bracketed placeholder like `[Add your price]` for anything the
   user hasn't supplied yet, matching the existing placeholder style.
-- Adding a 7th service? Mirror the pattern used for School/Weddings/
-  Christmas: a service card (icon + copy + "View full gallery" +
+- Adding an 8th service? Mirror the pattern used for Twins/School/
+  Weddings/Christmas: a service card (icon + copy + "View full gallery" +
   "Enquire" links) in `#services`, a matching pricing card in `#pricing`,
   a `gallery-<slug>.html` page (12 placeholder photos, Back button,
   cross-links updated on *all* gallery pages, not just the new one), a
   new `<option>` in the contact form's session dropdown, and placeholder
   images generated in the same gradient-tile style so nothing looks
-  broken before real photos exist.
+  broken before real photos exist. `.three-col-grid` is flexbox now (see
+  Design System above), so an 8th card just wraps and centers correctly
+  with no CSS changes needed — that was the whole point of that change.
