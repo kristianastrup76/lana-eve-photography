@@ -32,10 +32,12 @@ styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
 images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
                           and one <session>-card.jpg (4:3) per service —
-                          baby-card.jpg, cakesmash-card.jpg, family-card.jpg
-                          are real photos; twins-card.jpg, school-card.jpg,
-                          weddings-card.jpg, christmas-card.jpg are still
-                          placeholders
+                          baby-card.jpg, cakesmash-card.jpg, family-card.jpg,
+                          twins-card.jpg, and school-card.jpg are all real
+                          photos, hand-picked from each session's gallery and
+                          cropped to 4:3; weddings-card.jpg and
+                          christmas-card.jpg are still placeholders (no real
+                          galleries exist yet for those two)
 images/<session>/01.jpg..NN.jpg   Real gallery photos for baby (61), cakesmash
                           (46), family (33), school (34), twins (14) — one
                           photo per file, 4:5 center-cropped, resized to a
@@ -242,10 +244,12 @@ rather than improvising a new layout.
   photos arrive for those two: replace files keeping filenames, delete
   any unused numbered placeholders, and add/remove matching `<button>`
   blocks in that `gallery-*.html` to match the real count. The four
-  `-card.jpg` homepage files for Twins, School, Weddings and Christmas
-  are still placeholders too (separate from the gallery photos above) —
-  a real photo now exists in each of those sessions' gallery folders that
-  could become the card image if asked, just hasn't been done yet.
+  `-card.jpg` homepage files for Weddings and Christmas are still
+  placeholders (no real photos exist for either yet). Baby, Cakesmash,
+  Family, Twins, and School all have real `-card.jpg` files now, each
+  hand-picked from that session's full gallery rather than just being
+  the first photo in the folder — worth re-picking if a session's
+  gallery gets more/better photos later.
 - **Domain is mid-transfer.** The domain is moving from Wix to Namecheap;
   DNS hasn't been pointed at the hosting provider yet. Don't assume a
   custom domain is live — the site is currently only reachable at its
