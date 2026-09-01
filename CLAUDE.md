@@ -93,24 +93,28 @@ rather than improvising a new layout.
   2 to 1 at defined breakpoints — do NOT switch it to `auto-fit`/`minmax`,
   it leaves a lone card stranded on its own row at tablet widths. That was
   a real bug, fixed once already; don't reintroduce it.
-- **`.three-col-grid` is flexbox, not CSS grid** — changed when the 7th
-  service (Twins) made the card count stop being a multiple of 3. It's
-  `display:flex; flex-wrap:wrap; justify-content:center` with each child
-  sized to `calc((100% - 56px) / 3)` (3 per row, 28px gaps) so it still
-  *looks* like a 3-column grid, but any remainder card centers itself on
-  its own row at full card width instead of sitting left-aligned with
-  empty space beside it, which is what a plain `grid-template-columns:
-  repeat(3,...)` would do. At ≤900px each child goes to `flex-basis:100%`
-  for the single-column stack (same visual result as before). It's used
-  only inside the Services section now (Pricing switched to a table — see
-  below), once per `.services-group` (see next bullet), so it never has
-  to absorb all seven cards' remainder in one row.
+- **`.two-col-grid` (Services only — unrelated to `.four-col-grid` in
+  "How it works") is flexbox, not CSS grid** — it was `.three-col-grid`
+  at 3-per-row until the user asked for 2-per-row instead; renamed to
+  match. It's `display:flex; flex-wrap:wrap; justify-content:center`
+  with each child sized to `calc((100% - 28px) / 2)` (2 per row, one
+  28px gap) so it still *looks* like a 2-column grid, but any remainder
+  card centers itself on its own row at full card width instead of
+  sitting left-aligned with empty space beside it, which is what a plain
+  `grid-template-columns: repeat(2,...)` would do. At ≤900px each child
+  goes to `flex-basis:100%` for the single-column stack (same visual
+  result as before). It's used only inside the Services section now
+  (Pricing switched to a table — see below), once per `.services-group`
+  (see next bullet), so it never has to absorb all seven cards' remainder
+  in one row. If the per-row count changes again, update both the CSS
+  class name and this note together — don't let them drift apart.
 - **Services are split into two `.services-group` blocks**, each with an
-  `<span class="eyebrow">` label and its own `.three-col-grid`: "For
-  Little Ones" (Baby, Cakesmash, Family, Twins — 4 cards) and "Milestones
-  & Occasions" (School, Weddings, Christmas — 3 cards). This replaced one
-  flat 7-card grid because seven same-shaped cards in a row read as messy
-  and hard to scan. `.services-group .eyebrow { margin-bottom: 22px }`
+  `<span class="eyebrow">` label and its own `.two-col-grid`: "For
+  Little Ones" (Baby, Cakesmash, Family, Twins — 4 cards, so 2 even rows)
+  and "Milestones & Occasions" (School, Weddings, Christmas — 3 cards, so
+  1 row of 2 plus a centered orphan). This replaced one flat 7-card grid
+  because seven same-shaped cards in a row read as messy and hard to
+  scan. `.services-group .eyebrow { margin-bottom: 22px }`
   and `.services-group + .services-group { margin-top: ... }` handle the
   spacing — don't add margin directly to the cards or grid for this.
   Adding an 8th service means deciding which group it belongs to (or
@@ -294,6 +298,6 @@ rather than improvising a new layout.
   cross-links updated on *all* gallery pages, not just the new one), a
   new `<option>` in the contact form's session dropdown, and placeholder
   images generated in the same gradient-tile style so nothing looks
-  broken before real photos exist. Both `.three-col-grid` and the pricing
+  broken before real photos exist. Both `.two-col-grid` and the pricing
   table already handle any card/row count gracefully — no CSS changes
   needed for the count itself, just the content.
