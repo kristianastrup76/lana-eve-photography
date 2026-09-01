@@ -453,15 +453,19 @@
     </div>
   </div>
 
-  <form class="card contact-form" action="#" method="post">
+  <form class="card contact-form" id="contact-form" action="https://formsubmit.co/lana.astrupnielsen@gmail.com" method="post">
+    <input type="hidden" name="_subject" value="New enquiry from the Lana Eve Photography website">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://lana-eve-photography.kristianastrup76.workers.dev/index.html?sent=true#contact">
+    <input type="text" name="_honeypot" style="position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="contact-form-row">
       <div class="field">
         <label for="name">Your name</label>
-        <input type="text" id="name" name="name" placeholder="Jane Smith">
+        <input type="text" id="name" name="name" placeholder="Jane Smith" required>
       </div>
       <div class="field">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="jane@email.com">
+        <input type="email" id="email" name="email" placeholder="jane@email.com" required>
       </div>
     </div>
     <div class="field">
@@ -482,6 +486,11 @@
     </div>
     <button type="submit" class="btn-primary" style="justify-content:center; margin-top:6px;">Send enquiry</button>
   </form>
+  <div class="card contact-form-success" id="contact-form-success">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#b6553c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.3l2.4 2.4L15.8 9.6"></path></svg>
+    <h3>Thanks — your message is on its way</h3>
+    <p>I'll get back to you soon.</p>
+  </div>
 </div>
 
 <!-- FOOTER -->

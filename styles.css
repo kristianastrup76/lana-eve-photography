@@ -95,7 +95,10 @@ img { max-width: 100%; }
 /* Service cards */
 .service-card { display: flex; flex-direction: column; overflow: hidden; }
 .service-card-photo { aspect-ratio: 4/3; border-radius: 18px 18px 0 0; overflow: hidden; }
-.service-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.service-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 200ms ease-out; }
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover .service-card-photo img { transform: scale(1.045); }
+}
 .service-card-body { padding: 26px 24px 28px; display: flex; flex-direction: column; gap: 14px; }
 .service-card-body h3 { font-size: 23px; color: var(--ink-soft); }
 .service-card-body p { font-size: 15px; line-height: 1.6; color: var(--body-text); }
@@ -157,6 +160,10 @@ img { max-width: 100%; }
 .contact-links a { display: flex; align-items: center; gap: 12px; color: var(--ink); }
 .contact-form { padding: 34px 32px; display: flex; flex-direction: column; gap: 18px; }
 .contact-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 18px; }
+.contact-form-success { display: none; padding: 34px 32px; flex-direction: column; align-items: flex-start; gap: 10px; }
+.contact-form-success.is-visible { display: flex; }
+.contact-form-success h3 { font-size: 21px; color: var(--ink-soft); }
+.contact-form-success p { font-size: 15px; color: var(--body-text); }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 30px 0; }
@@ -236,6 +243,7 @@ img { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   a, .btn-primary, .btn-secondary, .pricing-table tbody tr,
   .gallery-grid button, .gallery-grid img, .backdrop-grid button, .backdrop-grid img,
+  .service-card-photo img,
   .lightbox, .lightbox-figure, .lightbox-close, .lightbox-prev, .lightbox-next,
   .mobile-menu {
     transition-duration: 0.01ms !important;
@@ -243,6 +251,7 @@ img { max-width: 100%; }
   .gallery-grid button:hover img, .backdrop-grid button:hover img,
   .btn-primary:active, .btn-secondary:active, .gallery-grid button:active,
   .backdrop-grid button:active, .lightbox-close:active,
+  .service-card:hover .service-card-photo img,
   .lightbox-figure, .lightbox.is-open .lightbox-figure,
   .mobile-menu, .mobile-menu.is-open.is-visible {
     transform: none;

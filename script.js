@@ -86,3 +86,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'ArrowRight') show(current + 1);
   });
 });
+
+// Contact form success state — shows after FormSubmit.co redirects back with ?sent=true
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('contact-form');
+  var success = document.getElementById('contact-form-success');
+  if (!form || !success) return;
+  if (new URLSearchParams(window.location.search).get('sent') === 'true') {
+    form.style.display = 'none';
+    success.classList.add('is-visible');
+    // Drop ?sent=true from the URL so refreshing doesn't re-show the success state
+    var url = new URL(window.location.href);
+    url.searchParams.delete('sent');
+    window.history.replaceState(null, '', url.pathname + url.hash);
+  }
+});
