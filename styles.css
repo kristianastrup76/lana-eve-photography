@@ -23,14 +23,16 @@ body {
 
 h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; margin: 0; }
 p { margin: 0; }
-a { color: var(--accent-text); text-decoration: none; }
+a { color: var(--accent-text); text-decoration: none; transition: color 150ms ease; }
 a:hover { color: #8f4230; }
 img { max-width: 100%; }
 
 .container { max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
 .eyebrow { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--accent-text); }
-.btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 16px; color: #fdf9f4; text-decoration: none; box-shadow: 0 10px 24px -10px rgba(120, 60, 30, 0.45); background: var(--accent); border: none; cursor: pointer; }
-.btn-secondary { display: inline-flex; align-items: center; gap: 8px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 15px; text-decoration: none; color: var(--accent-text); }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 16px; color: #fdf9f4; text-decoration: none; box-shadow: 0 10px 24px -10px rgba(120, 60, 30, 0.45); background: var(--accent); border: none; cursor: pointer; transition: transform 160ms ease-out; }
+.btn-primary:active { transform: scale(0.97); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 15px; text-decoration: none; color: var(--accent-text); transition: transform 160ms ease-out; }
+.btn-secondary:active { transform: scale(0.97); }
 .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; }
 .nav-link { font-size: 15px; font-weight: 500; color: #4a3a30; }
 .nav-link:hover { color: var(--accent-text); }
@@ -53,8 +55,9 @@ img { max-width: 100%; }
 .nav-toggle .icon-close { display: none; }
 .nav-toggle.is-open .icon-menu { display: none; }
 .nav-toggle.is-open .icon-close { display: block; }
-.mobile-menu { display: none; flex-direction: column; border-top: 1px solid var(--border); background: var(--cream); }
+.mobile-menu { display: none; flex-direction: column; border-top: 1px solid var(--border); background: var(--cream); opacity: 0; transform: translateY(-6px); transition: opacity 180ms ease-out, transform 180ms ease-out; }
 .mobile-menu.is-open { display: flex; }
+.mobile-menu.is-open.is-visible { opacity: 1; transform: translateY(0); }
 .mobile-menu .nav-link { padding: 14px clamp(20px, 5vw, 64px); border-bottom: 1px solid var(--border); }
 .mobile-menu-cta { margin: 18px clamp(20px, 5vw, 64px) 22px; justify-content: center; }
 .three-col-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
@@ -103,7 +106,7 @@ img { max-width: 100%; }
 .pricing-table { width: 100%; border-collapse: collapse; }
 .pricing-table th, .pricing-table td { padding: 16px 22px; text-align: left; }
 .pricing-table thead th { background: var(--tan); font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
-.pricing-table tbody tr { border-top: 1px solid var(--border); }
+.pricing-table tbody tr { border-top: 1px solid var(--border); transition: background-color 150ms ease; }
 .pricing-table tbody tr:hover { background: rgba(182,85,60,0.045); }
 .pricing-table .session-name { font-weight: 500; color: var(--ink-soft); }
 .pricing-table td { font-size: 15px; color: var(--body-text); }
@@ -198,8 +201,9 @@ img { max-width: 100%; }
 .backdrop-note p { font-size: 15px; line-height: 1.65; color: var(--body-text); }
 .backdrop-note strong { color: var(--ink-soft); }
 .backdrop-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 16px; padding-bottom: clamp(56px,7vw,88px); }
-.backdrop-grid button { position: relative; padding: 0; border: none; background: none; cursor: zoom-in; border-radius: 14px; overflow: hidden; aspect-ratio: 1/1; display: block; }
-.backdrop-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+.backdrop-grid button { position: relative; padding: 0; border: none; background: none; cursor: zoom-in; border-radius: 14px; overflow: hidden; aspect-ratio: 1/1; display: block; transition: transform 160ms ease-out; }
+.backdrop-grid button:active { transform: scale(0.97); }
+.backdrop-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 200ms ease-out; }
 .backdrop-grid button:hover img { transform: scale(1.045); }
 .backdrop-grid button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .backdrop-number { position: absolute; top: 10px; left: 10px; min-width: 30px; height: 30px; padding: 0 6px; border-radius: 999px; background: rgba(30,20,14,0.72); color: #fdf9f4; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.01em; display: flex; align-items: center; justify-content: center; pointer-events: none; }
@@ -211,13 +215,15 @@ img { max-width: 100%; }
 }
 
 /* Lightbox */
-.lightbox { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; background: rgba(30,20,14,0.92); padding: 24px; }
-.lightbox.is-open { display: flex; }
-.lightbox-figure { position: relative; max-width: min(88vw, 900px); max-height: 86vh; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.lightbox { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; background: rgba(30,20,14,0.92); padding: 24px; opacity: 0; visibility: hidden; transition: opacity 200ms ease-out, visibility 0s linear 200ms; }
+.lightbox.is-open { opacity: 1; visibility: visible; transition: opacity 200ms ease-out; }
+.lightbox-figure { position: relative; max-width: min(88vw, 900px); max-height: 86vh; display: flex; flex-direction: column; align-items: center; gap: 14px; transform: scale(0.96); transition: transform 200ms ease-out; }
+.lightbox.is-open .lightbox-figure { transform: scale(1); }
 .lightbox-figure img { max-width: 100%; max-height: 78vh; width: auto; border-radius: 10px; display: block; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6); }
 .lightbox-count { color: #f2e6da; font-size: 13.5px; letter-spacing: 0.06em; }
-.lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); color: #fdf9f4; cursor: pointer; }
+.lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); color: #fdf9f4; cursor: pointer; transition: background-color 150ms ease; }
 .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.18); }
+.lightbox-close:active { transform: scale(0.92); }
 .lightbox-close { top: -18px; right: -18px; }
 .lightbox-prev { left: -60px; top: 50%; transform: translateY(-50%); }
 .lightbox-next { right: -60px; top: 50%; transform: translateY(-50%); }
@@ -225,4 +231,20 @@ img { max-width: 100%; }
   .lightbox-close { top: -52px; right: 0; }
   .lightbox-prev { left: 0; top: auto; bottom: -56px; transform: none; }
   .lightbox-next { right: 0; top: auto; bottom: -56px; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a, .btn-primary, .btn-secondary, .pricing-table tbody tr,
+  .gallery-grid button, .gallery-grid img, .backdrop-grid button, .backdrop-grid img,
+  .lightbox, .lightbox-figure, .lightbox-close, .lightbox-prev, .lightbox-next,
+  .mobile-menu {
+    transition-duration: 0.01ms !important;
+  }
+  .gallery-grid button:hover img, .backdrop-grid button:hover img,
+  .btn-primary:active, .btn-secondary:active, .gallery-grid button:active,
+  .backdrop-grid button:active, .lightbox-close:active,
+  .lightbox-figure, .lightbox.is-open .lightbox-figure,
+  .mobile-menu, .mobile-menu.is-open.is-visible {
+    transform: none;
+  }
 }

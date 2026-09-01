@@ -5,14 +5,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function closeMenu() {
     toggle.classList.remove('is-open');
-    menu.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-visible');
+    window.setTimeout(function () { menu.classList.remove('is-open'); }, 180);
+  }
+
+  function openMenu() {
+    toggle.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    menu.classList.add('is-open');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { menu.classList.add('is-visible'); });
+    });
   }
 
   function toggleMenu() {
-    var isOpen = menu.classList.toggle('is-open');
-    toggle.classList.toggle('is-open', isOpen);
-    toggle.setAttribute('aria-expanded', String(isOpen));
+    if (menu.classList.contains('is-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   }
 
   toggle.addEventListener('click', toggleMenu);
@@ -55,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
   function close() {
     lightbox.classList.remove('is-open');
     document.body.style.overflow = '';
-    lbImg.src = '';
     if (lastFocused) lastFocused.focus();
   }
 
