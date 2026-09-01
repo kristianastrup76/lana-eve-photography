@@ -79,15 +79,42 @@ rather than improvising a new layout.
   service (Twins) made the card count stop being a multiple of 3. It's
   `display:flex; flex-wrap:wrap; justify-content:center` with each child
   sized to `calc((100% - 56px) / 3)` (3 per row, 28px gaps) so it still
-  *looks* like a 3-column grid, but any remainder card (currently the 7th,
-  Twins, in both the Services and Pricing sections) centers itself on its
-  own row at full card width instead of sitting left-aligned with empty
-  space beside it, which is what a plain `grid-template-columns:
+  *looks* like a 3-column grid, but any remainder card centers itself on
+  its own row at full card width instead of sitting left-aligned with
+  empty space beside it, which is what a plain `grid-template-columns:
   repeat(3,...)` would do. At ≤900px each child goes to `flex-basis:100%`
-  for the single-column stack (same visual result as before). If you add
-  an 8th service, this needs no changes — it already handles any card
-  count gracefully. Despite the class name it's used for both the
-  Services grid and the Pricing grid.
+  for the single-column stack (same visual result as before). It's used
+  only inside the Services section now (Pricing switched to a table — see
+  below), once per `.services-group` (see next bullet), so it never has
+  to absorb all seven cards' remainder in one row.
+- **Services are split into two `.services-group` blocks**, each with an
+  `<span class="eyebrow">` label and its own `.three-col-grid`: "For
+  Little Ones" (Baby, Cakesmash, Family, Twins — 4 cards) and "Milestones
+  & Occasions" (School, Weddings, Christmas — 3 cards). This replaced one
+  flat 7-card grid because seven same-shaped cards in a row read as messy
+  and hard to scan. `.services-group .eyebrow { margin-bottom: 22px }`
+  and `.services-group + .services-group { margin-top: ... }` handle the
+  spacing — don't add margin directly to the cards or grid for this.
+  Adding an 8th service means deciding which group it belongs to (or
+  whether a third group is warranted) rather than defaulting to the end
+  of one list.
+- **Pricing is a `<table>` now, not cards** (`.pricing-table` inside
+  `.pricing-table-wrap.card`) — seven near-identical pricing cards (most
+  showing the same `[Add your price]` placeholder) read as far more
+  repetitive than seven table rows do. Columns: Session, Duration,
+  Images, Price, and a CTA cell ("Enquire →" / "Get a quote →" for
+  Weddings). The "Private online gallery, digital delivery" line that
+  used to repeat on every card was dropped — the section's existing lede
+  paragraph already says sessions are all-inclusive and digitally
+  delivered, so it doesn't need repeating seven times; there's also one
+  shared `.pricing-note` below the table for the "home studio in
+  Kirkcaldy" fact instead of repeating it per row. On mobile (≤700px) the
+  table becomes stacked cards via the classic `data-label`/`::before`
+  technique (`<thead>` is visually hidden, each `<td>` shows a small caps
+  label except `.session-name`, which is the card's own heading and
+  overrides back to `display:block` so it doesn't get pulled right by
+  the row's `justify-content:space-between`). If you add an 8th service,
+  add one `<tr>` — no card, no icon, no separate CSS.
 - **Breakpoints**: 900px is the main nav/layout breakpoint (desktop nav
   links hide, hamburger appears, 3-col grids go to 1 col); 620px is the
   secondary mobile breakpoint (4-col "how it works" grid goes to 1 col).
@@ -170,13 +197,14 @@ rather than improvising a new layout.
 
 ## Known open items (from the last handover — check before assuming done)
 
-- **Pricing is unset for 6 of 7 sessions.** Baby, Cakesmash, Family,
-  Twins, School, and Christmas pricing cards show `[Add your price]`;
-  Twins, School, and Christmas also have `[Session length]` / `[Number]`
-  placeholders in their inclusions (their duration and image count were
-  never specified, unlike Baby/Cakesmash/Family). Weddings shows "Custom
-  pricing" by design (see above). Don't invent numbers — leave
-  placeholders until the user gives real ones.
+- **Pricing is unset for 6 of 7 sessions.** In the pricing table, Baby,
+  Cakesmash, Family, Twins, School, and Christmas rows show
+  `[Add your price]` in the Price column; Twins, School, and Christmas
+  also show `[Session length]` / `[Number]` in the Duration/Images
+  columns (their duration and image count were never specified, unlike
+  Baby/Cakesmash/Family). Weddings shows "Custom pricing" by design (see
+  above). Don't invent numbers — leave placeholders until the user gives
+  real ones.
 - **Contact form has no backend.** The form in `index.html` (`action="#"`)
   doesn't send anywhere yet. It needs a real backend (Formspree, or
   similar) wired up before it's live-usable. Its session dropdown already
@@ -229,13 +257,14 @@ rather than improvising a new layout.
 - Real content only: no lorem ipsum, no fabricated prices/addresses/facts
   — use a bracketed placeholder like `[Add your price]` for anything the
   user hasn't supplied yet, matching the existing placeholder style.
-- Adding an 8th service? Mirror the pattern used for Twins/School/
-  Weddings/Christmas: a service card (icon + copy + "View full gallery" +
-  "Enquire" links) in `#services`, a matching pricing card in `#pricing`,
+- Adding an 8th service? A service card (icon + copy + "View full
+  gallery" + "Enquire" links) in whichever `.services-group` it belongs
+  to under `#services` (or a new group, if it doesn't fit "For Little
+  Ones" or "Milestones & Occasions"), one `<tr>` in the `#pricing` table,
   a `gallery-<slug>.html` page (12 placeholder photos, Back button,
   cross-links updated on *all* gallery pages, not just the new one), a
   new `<option>` in the contact form's session dropdown, and placeholder
   images generated in the same gradient-tile style so nothing looks
-  broken before real photos exist. `.three-col-grid` is flexbox now (see
-  Design System above), so an 8th card just wraps and centers correctly
-  with no CSS changes needed — that was the whole point of that change.
+  broken before real photos exist. Both `.three-col-grid` and the pricing
+  table already handle any card/row count gracefully — no CSS changes
+  needed for the count itself, just the content.
