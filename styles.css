@@ -47,8 +47,8 @@ img { max-width: 100%; }
 .site-header { border-bottom: 1px solid var(--border); background: rgba(251,245,239,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 20; }
 .nav-row { display: flex; align-items: center; justify-content: space-between; height: 84px; gap: 24px; }
 .logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--ink); line-height: 1; }
-.logo-sub { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.22em; font-weight: 600; color: #8a6c58; }
+.logo-text { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--ink); line-height: 1; }
+.logo-sub { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; font-weight: 600; color: #8a6c58; }
 .nav-links-desktop { display: flex; align-items: center; gap: 30px; }
 .nav-right { display: flex; align-items: center; gap: 14px; }
 .nav-toggle { display: none; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--field-border); background: var(--card-bg); cursor: pointer; padding: 0; flex: 0 0 auto; }
