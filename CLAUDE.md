@@ -19,13 +19,13 @@ step, look for a plain-CSS/JS way to do it first.
 ```
 index.html               Homepage: nav, hero, services, pricing, how-it-works,
                           about, testimonials, contact, footer
-gallery-baby.html         12-photo gallery + lightbox, Baby & Newborn session
-gallery-cakesmash.html    12-photo gallery + lightbox, Cakesmash 'n' Splash session
-gallery-family.html       12-photo gallery + lightbox, Family session
-gallery-twins.html        12-photo gallery + lightbox, Twins
-gallery-school.html       12-photo gallery + lightbox, School Sessions
-gallery-weddings.html     12-photo gallery + lightbox, Weddings
-gallery-christmas.html    12-photo gallery + lightbox, Christmas Sessions
+gallery-baby.html         Gallery + lightbox, Baby & Newborn session (61 real photos)
+gallery-cakesmash.html    Gallery + lightbox, Cakesmash 'n' Splash session (46 real photos)
+gallery-family.html       Gallery + lightbox, Family session (33 real photos)
+gallery-twins.html        Gallery + lightbox, Twins (14 real photos)
+gallery-school.html       Gallery + lightbox, School Sessions (34 real photos)
+gallery-weddings.html     12-photo gallery + lightbox, Weddings (still placeholders)
+gallery-christmas.html    12-photo gallery + lightbox, Christmas Sessions (still placeholders)
 backdrops.html            PRIVATE, unlisted backdrop chooser for booked
                           clients only — see "Private pages" below
 styles.css                All styling for every page (one shared stylesheet)
@@ -36,9 +36,19 @@ images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
                           are real photos; twins-card.jpg, school-card.jpg,
                           weddings-card.jpg, christmas-card.jpg are still
                           placeholders
-images/<session>/01.jpg..12.jpg   12 gallery photos per session (4:5), one
-                          subfolder per service: baby, cakesmash, family,
-                          twins, school, weddings, christmas
+images/<session>/01.jpg..NN.jpg   Real gallery photos for baby (61), cakesmash
+                          (46), family (33), school (34), twins (14) — one
+                          photo per file, 4:5 center-cropped, resized to a
+                          1600px longest edge, ~78% JPEG quality. Counts are
+                          NOT uniform across sessions and don't need to be —
+                          the gallery-*.html grid and lightbox JS both work
+                          off however many <button> blocks exist, no fixed
+                          count assumed anywhere. weddings/ and christmas/
+                          still hold 12 gradient placeholder tiles each.
+                          Source originals (full-res, uncropped) live in the
+                          project-root "Pics for Lana Eve Photography
+                          galleries/" folder, gitignored — never delete that
+                          folder, it's the only copy of the originals.
 images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
                           only by backdrops.html
 README.md                 Handover notes, incl. open TODOs also listed below
@@ -215,18 +225,27 @@ rather than improvising a new layout.
   doesn't send anywhere yet. It needs a real backend (Formspree, or
   similar) wired up before it's live-usable. Its session dropdown already
   lists all seven options.
-- **Gallery photos are placeholders — for all seven sessions.** All 84
-  images under `images/<session>/` are generated gradient placeholder
-  tiles labelled "Sample photo NN," not real photography (Baby, Cakesmash
-  and Family were placeholders too until real photos were dropped in for
-  their *card* image only — their *gallery* photos are still all
-  placeholders). The four `-card.jpg` files for Twins, School, Weddings
-  and Christmas are also still placeholders. When the user provides real
-  photos, replace files in place keeping the same filenames (`01.jpg`–
-  `12.jpg` per gallery folder, or `<session>-card.jpg` for the homepage
-  card) — pages reference them by path and need no HTML changes. If fewer
-  than 12 real photos exist for a session, delete the unused numbered
-  files AND remove the matching `<button>` block in that `gallery-*.html`.
+- **Gallery photos are real for five of seven sessions; Weddings and
+  Christmas are still placeholders.** Baby (61), Cakesmash (46), Family
+  (33), School (34), and Twins (14) galleries now use real photos, sourced
+  from full-resolution originals in the project-root "Pics for Lana Eve
+  Photography galleries/" folder (gitignored — do not delete, it's the
+  only copy of the un-cropped originals) and processed with macOS `sips`:
+  center-cropped to 4:5, resampled to a 1600px longest edge, ~78% JPEG
+  quality. Photo counts are **not** 12 and not uniform — each session's
+  `images/<session>/` folder has however many real photos existed, and
+  each `gallery-<session>.html` has a matching `<button>` block per photo
+  (both the CSS grid and the lightbox JS work off whatever's in the DOM,
+  no fixed count assumed). `images/weddings/` and `images/christmas/`
+  still hold 12 generated gradient placeholder tiles labelled "Sample
+  photo NN" each — same swap-in-place process applies whenever real
+  photos arrive for those two: replace files keeping filenames, delete
+  any unused numbered placeholders, and add/remove matching `<button>`
+  blocks in that `gallery-*.html` to match the real count. The four
+  `-card.jpg` homepage files for Twins, School, Weddings and Christmas
+  are still placeholders too (separate from the gallery photos above) —
+  a real photo now exists in each of those sessions' gallery folders that
+  could become the card image if asked, just hasn't been done yet.
 - **Domain is mid-transfer.** The domain is moving from Wix to Namecheap;
   DNS hasn't been pointed at the hosting provider yet. Don't assume a
   custom domain is live — the site is currently only reachable at its
