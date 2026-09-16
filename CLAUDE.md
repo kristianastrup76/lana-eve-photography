@@ -61,6 +61,21 @@ images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           else with it.)
 images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
                           only by backdrops.html
+images/brand/              Favicon + logo PNGs rendered from the nav logo
+                          mark's SVG paths (styles.css/header markup is
+                          still the source of truth for the inline SVG used
+                          in the header itself — these are separate static
+                          exports for contexts that can't use inline SVG):
+                          favicon-192.png and favicon-32.png (transparent,
+                          referenced via <link rel="icon"> on every page),
+                          apple-touch-icon.png (180x180, on cream circle
+                          backdrop), and logo-512.png (512x512, same cream
+                          circle treatment, referenced as "logo" in
+                          index.html's LocalBusiness JSON-LD so Google can
+                          show it in search results/knowledge panel). If
+                          the logo mark ever changes, regenerate all four
+                          from the updated SVG rather than hand-editing
+                          the PNGs.
 robots.txt                Allows all crawlers except backdrops.html; points to
                           sitemap.xml
 sitemap.xml               Lists the 8 public pages (not backdrops.html, which
