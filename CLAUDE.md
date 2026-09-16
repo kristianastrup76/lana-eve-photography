@@ -22,7 +22,7 @@ index.html               Homepage: nav, hero, services, pricing, how-it-works,
 gallery-baby.html         Gallery + lightbox, Baby & Newborn session (61 real photos)
 gallery-cakesmash.html    Gallery + lightbox, Cakesmash 'n' Splash session (46 real photos)
 gallery-family.html       Gallery + lightbox, Family session (33 real photos)
-gallery-twins.html        Gallery + lightbox, Twins (14 real photos)
+gallery-twins.html        Gallery + lightbox, Twins (13 real photos)
 gallery-school.html       Gallery + lightbox, School Sessions (34 real photos)
 gallery-weddings.html     Gallery + lightbox, Weddings (58 real photos)
 gallery-christmas.html    Gallery + lightbox, Christmas Sessions (31 real photos)
@@ -39,7 +39,7 @@ images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
                           session's gallery and cropped to 4:3
 images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           baby (61), cakesmash (46), family (33), school (34),
-                          twins (14), weddings (58), christmas (31) — one
+                          twins (13), weddings (58), christmas (31) — one
                           photo per file, 4:5 center-cropped, resized to a
                           1600px longest edge, ~78% JPEG quality. Counts are
                           NOT uniform across sessions and don't need to be —
@@ -255,7 +255,7 @@ rather than improvising a new layout.
   similar) wired up before it's live-usable. Its session dropdown already
   lists all seven options.
 - **Gallery photos are real for all seven sessions now** — Baby (61),
-  Cakesmash (46), Family (33), School (34), Twins (14), Weddings (58),
+  Cakesmash (46), Family (33), School (34), Twins (13), Weddings (58),
   and Christmas (31), sourced from full-resolution originals in the
   project-root "Pics for Lana Eve Photography galleries/" folder
   (gitignored — do not delete, it's the only copy of the un-cropped
@@ -271,10 +271,17 @@ rather than improvising a new layout.
   session's gallery gets more/better photos later. If an 8th service is
   added, it starts back at the placeholder-gradient-tile stage described
   under "Adding an 8th service" below until real photos arrive for it.
-- **Domain is mid-transfer.** The domain is moving from Wix to Namecheap;
-  DNS hasn't been pointed at the hosting provider yet. Don't assume a
-  custom domain is live — the site is currently only reachable at its
-  Vercel/Cloudflare Pages URLs.
+- **Domain is live.** `lanaevephotography.co.uk` is registered at
+  Namecheap, with DNS delegated to Cloudflare (nameservers `leia.ns
+  .cloudflare.com` / `paul.ns.cloudflare.com`) and both the bare domain
+  and `www` connected as Custom Domains on the `lana-eve-photography`
+  Cloudflare Worker. Both currently serve the site directly; `www` is
+  meant to redirect to the bare domain (the canonical URL) via a
+  Cloudflare Redirect Rule, set up in the dashboard rather than in this
+  repo. The site previously ran on Wix at this domain — that's fully
+  replaced now, not running alongside anything. Vercel and the
+  `*.workers.dev` URL still exist as build previews but the custom
+  domain is what's shared publicly now.
 - **Backdrop swatches are placeholders too.** All 10 images in
   `images/backdrops/` are generated plain gradient tiles (no session-style
   label baked in — the number badge in the HTML does that job instead).
