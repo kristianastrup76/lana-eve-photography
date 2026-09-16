@@ -19,10 +19,10 @@ step, look for a plain-CSS/JS way to do it first.
 ```
 index.html               Homepage: nav, hero, services, pricing, how-it-works,
                           about, testimonials, contact, footer
-gallery-baby.html         Gallery + lightbox, Baby & Newborn session (61 real photos)
-gallery-cakesmash.html    Gallery + lightbox, Cakesmash 'n' Splash session (46 real photos)
-gallery-family.html       Gallery + lightbox, Family session (33 real photos)
-gallery-twins.html        Gallery + lightbox, Twins (13 real photos)
+gallery-baby.html         Gallery + lightbox, Baby & Newborn session (66 real photos)
+gallery-cakesmash.html    Gallery + lightbox, Cakesmash 'n' Splash session (50 real photos)
+gallery-family.html       Gallery + lightbox, Family session (39 real photos)
+gallery-twins.html        Gallery + lightbox, Twins (14 real photos)
 gallery-school.html       Gallery + lightbox, School Sessions (34 real photos)
 gallery-weddings.html     Gallery + lightbox, Weddings (58 real photos)
 gallery-christmas.html    Gallery + lightbox, Christmas Sessions (31 real photos)
@@ -38,7 +38,7 @@ images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
                           christmas-card.jpg), each hand-picked from that
                           session's gallery and cropped to 4:3
 images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
-                          baby (61), cakesmash (46), family (33), school (34),
+                          baby (66), cakesmash (50), family (39), school (34),
                           twins (13), weddings (58), christmas (31) — one
                           photo per file, 4:5 center-cropped, resized to a
                           1600px longest edge, ~78% JPEG quality. Counts are
@@ -255,7 +255,7 @@ rather than improvising a new layout.
   similar) wired up before it's live-usable. Its session dropdown already
   lists all seven options.
 - **Gallery photos are real for all seven sessions now** — Baby (61),
-  Cakesmash (46), Family (33), School (34), Twins (13), Weddings (58),
+  Cakesmash (50), Family (39), School (34), Twins (14), Weddings (58),
   and Christmas (31), sourced from full-resolution originals in the
   project-root "Pics for Lana Eve Photography galleries/" folder
   (gitignored — do not delete, it's the only copy of the un-cropped
