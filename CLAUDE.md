@@ -61,6 +61,11 @@ images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           else with it.)
 images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
                           only by backdrops.html
+robots.txt                Allows all crawlers except backdrops.html; points to
+                          sitemap.xml
+sitemap.xml               Lists the 8 public pages (not backdrops.html, which
+                          is noindex'd separately). Add/remove a <url> entry
+                          here if a page is added or removed.
 README.md                 Handover notes, incl. open TODOs also listed below
 ```
 
@@ -324,4 +329,17 @@ rather than improvising a new layout.
   images generated in the same gradient-tile style so nothing looks
   broken before real photos exist. Both `.two-col-grid` and the pricing
   table already handle any card/row count gracefully — no CSS changes
-  needed for the count itself, just the content.
+  needed for the count itself, just the content. Also add the new
+  gallery's URL to `sitemap.xml`, and give the new page the same
+  canonical/Open Graph/Twitter Card `<head>` tags every other page has
+  (see below) — copy an existing gallery page's block and swap the
+  title, description, URL, and card image.
+- **Every public page (all seven galleries + index.html, not
+  `backdrops.html`) has a canonical link, Open Graph tags, and Twitter
+  Card tags in `<head>`**, each using that page's own title, meta
+  description, URL, and `<session>-card.jpg` (or `hero-photo.jpg` for
+  the homepage) as the share image. `index.html` additionally has a
+  `LocalBusiness` JSON-LD block (name, address, phone, email, price
+  range, social links) — update it if the address, phone, or socials
+  ever change, since it's a separate copy of those facts from the
+  visible Contact section.

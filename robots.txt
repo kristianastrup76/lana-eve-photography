@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /backdrops.html
+
+Sitemap: https://lanaevephotography.co.uk/sitemap.xml
