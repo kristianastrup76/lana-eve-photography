@@ -24,33 +24,41 @@ gallery-cakesmash.html    Gallery + lightbox, Cakesmash 'n' Splash session (46 r
 gallery-family.html       Gallery + lightbox, Family session (33 real photos)
 gallery-twins.html        Gallery + lightbox, Twins (14 real photos)
 gallery-school.html       Gallery + lightbox, School Sessions (34 real photos)
-gallery-weddings.html     12-photo gallery + lightbox, Weddings (still placeholders)
-gallery-christmas.html    12-photo gallery + lightbox, Christmas Sessions (still placeholders)
+gallery-weddings.html     Gallery + lightbox, Weddings (58 real photos)
+gallery-christmas.html    Gallery + lightbox, Christmas Sessions (31 real photos)
 backdrops.html            PRIVATE, unlisted backdrop chooser for booked
                           clients only — see "Private pages" below
 styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
 images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
-                          and one <session>-card.jpg (4:3) per service —
-                          baby-card.jpg, cakesmash-card.jpg, family-card.jpg,
-                          twins-card.jpg, and school-card.jpg are all real
-                          photos, hand-picked from each session's gallery and
-                          cropped to 4:3; weddings-card.jpg and
-                          christmas-card.jpg are still placeholders (no real
-                          galleries exist yet for those two)
-images/<session>/01.jpg..NN.jpg   Real gallery photos for baby (61), cakesmash
-                          (46), family (33), school (34), twins (14) — one
+                          and one <session>-card.jpg (4:3) per service — all
+                          seven are now real photos (baby-card.jpg,
+                          cakesmash-card.jpg, family-card.jpg, twins-card.jpg,
+                          school-card.jpg, weddings-card.jpg,
+                          christmas-card.jpg), each hand-picked from that
+                          session's gallery and cropped to 4:3
+images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
+                          baby (61), cakesmash (46), family (33), school (34),
+                          twins (14), weddings (58), christmas (31) — one
                           photo per file, 4:5 center-cropped, resized to a
                           1600px longest edge, ~78% JPEG quality. Counts are
                           NOT uniform across sessions and don't need to be —
                           the gallery-*.html grid and lightbox JS both work
                           off however many <button> blocks exist, no fixed
-                          count assumed anywhere. weddings/ and christmas/
-                          still hold 12 gradient placeholder tiles each.
-                          Source originals (full-res, uncropped) live in the
-                          project-root "Pics for Lana Eve Photography
-                          galleries/" folder, gitignored — never delete that
-                          folder, it's the only copy of the originals.
+                          count assumed anywhere. Source originals (full-res,
+                          uncropped) live in the project-root "Pics for Lana
+                          Eve Photography galleries/" folder, gitignored —
+                          never delete that folder, it's the only copy of
+                          the originals. (Note: both the Weddings and
+                          Christmas subfolders were originally dropped at
+                          the project root as their own folders — "Wedding/"
+                          and "Xmas Folder/" — rather than inside "Pics for
+                          Lana Eve Photography galleries/", and had to be
+                          moved in before processing so they'd be
+                          gitignored. If a future photo drop (an 8th
+                          service, or reshoots) lands the same way, move it
+                          inside that folder first, before doing anything
+                          else with it.)
 images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
                           only by backdrops.html
 README.md                 Handover notes, incl. open TODOs also listed below
@@ -203,6 +211,10 @@ rather than improvising a new layout.
   (festive mini sessions).
 - Contact: lana.astrupnielsen@googlemail.com, 07872 475731,
   @lana_eve_photography (Instagram), Lana Eve Photography (Facebook).
+  Studio address: 46 Boglily Road, KY2 5NF — shown publicly in the
+  Contact section (linked to Google Maps), a deliberate choice the user
+  confirmed despite it being a home studio; don't revert to a
+  "shared once booked" placeholder without being asked.
 - Tone: warm, boutique, unhurried — "quiet, unhurried moments," "no
   rushing, no stiff poses." Keep new copy in this voice, not generic
   marketing filler.
@@ -210,50 +222,55 @@ rather than improvising a new layout.
   Bobby Sword, Jordan Stark, Neil Williamson, Marin Dunsire) — don't
   paraphrase or invent new ones; only add reviews the user actually
   supplies verbatim.
-- **Weddings pricing is intentionally different**: instead of a flat
-  price + inclusions checklist like the other five, its pricing card shows
-  "Custom pricing" and a short paragraph pointing to "Get a custom quote."
-  Don't collapse it back into the flat-price format unless asked — weddings
-  genuinely don't fit that model (variable hours, one vs. two photographers,
-  album or not).
+- **Weddings pricing is a starting-from figure, not a flat price**: the
+  table row shows Duration "Bridal prep to meal", Images "600+", and
+  Price "From £800" (real `.price` styling, not the old `.price-custom`
+  text style — that class has been removed from styles.css since nothing
+  uses it anymore), with a "Get a quote" CTA instead of "Enquire" like
+  the other rows. Weddings genuinely varies (hours, one vs. two
+  photographers, album or not), so keep the "From" wording and the
+  distinct CTA even though there's now a real number — don't collapse it
+  to a plain flat price matching the other rows unless asked.
+- **Christmas has two price tiers, shown as two table rows**: "Christmas
+  Sessions" (45 min–1 hour, 60+ images, £150) and "Christmas Mini
+  Session" (25 min, 30+ images, £100) both live in the pricing table as
+  separate `<tr>`s, but there's only one Christmas service/gallery/card —
+  the Mini Session is a shorter, cheaper package of the same session
+  type, not an 8th service. Both rows' CTAs point at `#contact` like
+  normal; there's no separate dropdown option for it in the contact
+  form's session picker.
 
 ## Known open items (from the last handover — check before assuming done)
 
-- **Pricing is unset for 6 of 7 sessions.** In the pricing table, Baby,
-  Cakesmash, Family, Twins, School, and Christmas rows show
-  `[Add your price]` in the Price column; Twins, School, and Christmas
-  also show `[Session length]` / `[Number]` in the Duration/Images
-  columns (their duration and image count were never specified, unlike
-  Baby/Cakesmash/Family). Weddings shows "Custom pricing" by design (see
-  above). Don't invent numbers — leave placeholders until the user gives
-  real ones.
+- **Pricing is fully set for all eight rows** (all seven services, plus
+  the Christmas Mini Session tier — see the design-system bullet above).
+  No more `[Add your price]` / `[Session length]` / `[Number]`
+  placeholders anywhere in the pricing table. Real values: Baby £290
+  (80–100+ images, 2–3hrs), Cakesmash £200 (80–100+, 1hr), Family £180
+  (70–100+, 1hr), Twins £350 (100+, 2–3hrs), School £130 (50+, 45min–1hr),
+  Weddings from £800 (600+, bridal prep to meal), Christmas Sessions £150
+  (60+, 45min–1hr), Christmas Mini Session £100 (30+, 25min).
 - **Contact form has no backend.** The form in `index.html` (`action="#"`)
   doesn't send anywhere yet. It needs a real backend (Formspree, or
   similar) wired up before it's live-usable. Its session dropdown already
   lists all seven options.
-- **Gallery photos are real for five of seven sessions; Weddings and
-  Christmas are still placeholders.** Baby (61), Cakesmash (46), Family
-  (33), School (34), and Twins (14) galleries now use real photos, sourced
-  from full-resolution originals in the project-root "Pics for Lana Eve
-  Photography galleries/" folder (gitignored — do not delete, it's the
-  only copy of the un-cropped originals) and processed with macOS `sips`:
-  center-cropped to 4:5, resampled to a 1600px longest edge, ~78% JPEG
-  quality. Photo counts are **not** 12 and not uniform — each session's
-  `images/<session>/` folder has however many real photos existed, and
-  each `gallery-<session>.html` has a matching `<button>` block per photo
+- **Gallery photos are real for all seven sessions now** — Baby (61),
+  Cakesmash (46), Family (33), School (34), Twins (14), Weddings (58),
+  and Christmas (31), sourced from full-resolution originals in the
+  project-root "Pics for Lana Eve Photography galleries/" folder
+  (gitignored — do not delete, it's the only copy of the un-cropped
+  originals) and processed with macOS `sips`: center-cropped to 4:5,
+  resampled to a 1600px longest edge, ~78% JPEG quality. Photo counts
+  are **not** 12 and not uniform — each session's `images/<session>/`
+  folder has however many real photos existed, and each
+  `gallery-<session>.html` has a matching `<button>` block per photo
   (both the CSS grid and the lightbox JS work off whatever's in the DOM,
-  no fixed count assumed). `images/weddings/` and `images/christmas/`
-  still hold 12 generated gradient placeholder tiles labelled "Sample
-  photo NN" each — same swap-in-place process applies whenever real
-  photos arrive for those two: replace files keeping filenames, delete
-  any unused numbered placeholders, and add/remove matching `<button>`
-  blocks in that `gallery-*.html` to match the real count. The four
-  `-card.jpg` homepage files for Weddings and Christmas are still
-  placeholders (no real photos exist for either yet). Baby, Cakesmash,
-  Family, Twins, and School all have real `-card.jpg` files now, each
-  hand-picked from that session's full gallery rather than just being
-  the first photo in the folder — worth re-picking if a session's
-  gallery gets more/better photos later.
+  no fixed count assumed). All seven homepage `-card.jpg` files are real
+  too, each hand-picked from that session's full gallery rather than
+  just being the first photo in the folder — worth re-picking if a
+  session's gallery gets more/better photos later. If an 8th service is
+  added, it starts back at the placeholder-gradient-tile stage described
+  under "Adding an 8th service" below until real photos arrive for it.
 - **Domain is mid-transfer.** The domain is moving from Wix to Namecheap;
   DNS hasn't been pointed at the hosting provider yet. Don't assume a
   custom domain is live — the site is currently only reachable at its
