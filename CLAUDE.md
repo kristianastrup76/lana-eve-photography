@@ -30,16 +30,7 @@ backdrops.html            PRIVATE, unlisted backdrop chooser for booked
                           clients only — see "Private pages" below
 styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
-images/                   Homepage photos: hero-photo.jpg, about-lana.jpg
-                          (edited — a "Hello!" script-text overlay that
-                          was baked into the original photo has been
-                          removed via a targeted blur over the plain
-                          wall background behind Lana; if a fresh export
-                          of this photo ever replaces it, check whether
-                          the new one still has that text baked in and
-                          needs the same treatment — it's a photo edit,
-                          not something CSS/HTML can touch),
-                          and one <session>-card.jpg (4:3) per service — all
+images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
                           and one <session>-card.jpg (4:3) per service — all
                           seven are now real photos (baby-card.jpg,
                           cakesmash-card.jpg, family-card.jpg, twins-card.jpg,
