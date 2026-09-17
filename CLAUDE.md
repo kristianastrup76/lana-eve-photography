@@ -30,7 +30,16 @@ backdrops.html            PRIVATE, unlisted backdrop chooser for booked
                           clients only — see "Private pages" below
 styles.css                All styling for every page (one shared stylesheet)
 script.js                 Mobile hamburger menu + gallery lightbox (vanilla JS)
-images/                   Homepage photos: hero-photo.jpg, about-lana.jpg,
+images/                   Homepage photos: hero-photo.jpg, about-lana.jpg
+                          (edited — a "Hello!" script-text overlay that
+                          was baked into the original photo has been
+                          removed via a targeted blur over the plain
+                          wall background behind Lana; if a fresh export
+                          of this photo ever replaces it, check whether
+                          the new one still has that text baked in and
+                          needs the same treatment — it's a photo edit,
+                          not something CSS/HTML can touch),
+                          and one <session>-card.jpg (4:3) per service — all
                           and one <session>-card.jpg (4:3) per service — all
                           seven are now real photos (baby-card.jpg,
                           cakesmash-card.jpg, family-card.jpg, twins-card.jpg,
@@ -135,10 +144,23 @@ rather than improvising a new layout.
   section background), `--card-bg: #fffdfb`, `--border: #efe2d6`,
   `--field-border: #e6d5c6`. Use these tokens, don't hardcode new hex values
   for things that already have a token.
-- **Type**: Cormorant Garamond (serif, headings + italic accents) paired
-  with Jost (sans, body/UI), both loaded from Google Fonts in each page's
-  `<head>`. Headings use Cormorant Garamond at weight 500; body copy is
-  Jost.
+- **Type**: Fraunces (serif, headings + italic accents) paired with Proxima
+  Nova (sans, body/UI) — replaced the original Cormorant Garamond + Jost
+  pairing site-wide. Fraunces is loaded from Google Fonts (`ital,opsz,wght`
+  axes: 400/600 upright, 400 italic) in each page's `<head>`. Proxima Nova
+  is a licensed font the client purchased (Mark Simonson) and is **not**
+  on Google Fonts — it's self-hosted via `@font-face` in `styles.css`,
+  loading woff2 files from `fonts/` (see the file-structure note above).
+  Five weights are available: 100 (Thin), 400 (Regular), 600 (Semibold),
+  700 (Bold), 900 (Black) — don't reference any other weight against
+  `'Proxima Nova'` or the browser will synthesize a fake bold/thin.
+  h1 is Fraunces 400; h2/h3 are Fraunces 600; body copy, buttons, eyebrows,
+  form fields and pricing-table headers are Proxima Nova (weights vary by
+  element — check `styles.css` rather than assuming one weight throughout).
+  Italic accent moments (testimonial quotes, the philosophy pull-quote,
+  `.section-tagline`) are Fraunces italic, not Proxima — Proxima Nova has
+  no italic weight purchased, so nothing should ever request
+  `font-style: italic` against it.
 - **Layout**: `.container` caps content at 1180px with responsive side
   padding via `clamp()`. Cards use `.card` (white background, 1px border,
   18px radius). Buttons are `.btn-primary` (solid pill, accent background)
@@ -203,33 +225,22 @@ rather than improvising a new layout.
   icon at smaller scale rather than reusing Weddings' rings or Family's
   people shapes), graduation cap (School), interlocking rings (Weddings),
   simple 3-line snowflake (Christmas).
-- **Nav logo — currently inconsistent between pages, check before assuming
-  either is "the" pattern.** `index.html` uses a stacked lockup
+- **Nav logo — now consistent site-wide.** Every page (index + all 7
+  galleries + backdrops) uses the same stacked lockup
   (`.logo-link-stacked`): `logo-icon.png` on top, then real text below it
-  — `.logo-title` ("Lana Eve") and `.logo-sub2` ("Photography"), both set
-  in `'Proxima Nova'` weight 100 (the licensed font in `fonts/`, see the
-  file-structure note above), all-caps, with `.logo-sub2`'s letter-spacing
-  hand-tuned (by measuring actual rendered pixel widths in a browser, not
-  guessed) so "PHOTOGRAPHY" spans the exact same width as "LANA EVE" — if
-  either line's font, size, or weight changes, re-measure and retune that
-  letter-spacing rather than eyeballing it, since the two are meant to
-  align. The other 8 pages (7 galleries + backdrops) still use the older
-  `.logo-link` pattern: the original inline-SVG icon plus `.logo-text`/
-  `.logo-sub` CSS (Cormorant Garamond + Jost, icon-left-text-right, not
-  stacked). This split exists because the homepage went through many
-  rounds of logo iteration that the other pages haven't caught up to yet
-  — don't assume it's intentional design variation; ask before treating
-  one pattern as the one to extend to new pages.
-- **index.html-only typography test — `<body class="font-test">` plus an
-  inline `<style>` block in its `<head>`.** Overrides body text, buttons,
-  eyebrows, form fields and the pricing table header from Jost to Proxima
-  Nova, and h1/h2/h3 from Cormorant Garamond to Fraunces (a Google Font,
-  weight 400 for h1, 600 for h2/h3). This is scoped to index.html only,
-  on top of the site-wide defaults still in styles.css (which the other
-  8 pages use unchanged) — it is explicitly a test the user is iterating
-  on, not a decided direction. Don't extend it to other pages or fold it
-  into styles.css until told it's the final choice; don't assume it's
-  "done" just because it's live on index.html.
+  — `.logo-title` ("Lana Eve") and `.logo-sub2` ("Photography"), currently
+  Thin (100) and Regular (400) respectively, all-caps, with `.logo-sub2`'s
+  letter-spacing hand-tuned (by measuring actual rendered pixel widths in
+  a browser, not guessed) so "PHOTOGRAPHY" spans the exact same width as
+  "LANA EVE" — if either line's font, size, or weight changes, re-measure
+  and retune that letter-spacing rather than eyeballing it, since the two
+  are meant to align. This replaced the old inline-SVG-icon +
+  `.logo-text`/`.logo-sub` pattern everywhere; those two classes no
+  longer exist in styles.css, so don't recreate them from memory.
+- **The Proxima Nova + Fraunces typography (see the Type bullet above)
+  was rolled out site-wide from what was originally an index.html-only
+  test.** It's the real, permanent direction now, not a test — treat it
+  the same as any other design-system rule above, no special caveats.
 - **Mobile nav**: hamburger toggle is vanilla JS (`script.js`), toggling
   `.is-open` classes on `#nav-toggle` and `#mobile-menu` — no framework
   state, no external menu library. The nav is deliberately short —
