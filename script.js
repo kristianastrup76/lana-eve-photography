@@ -87,6 +87,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// Basic image-theft deterrents — stops casual right-click-save and drag-save
+// on photos. Not foolproof (screenshots always work), but blocks the most
+// common casual copying. Scoped to <img> only so links/buttons/nav still work.
+document.addEventListener('contextmenu', function (e) {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+document.addEventListener('dragstart', function (e) {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+
 // Contact form success state — shows after FormSubmit.co redirects back with ?sent=true
 document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('contact-form');
