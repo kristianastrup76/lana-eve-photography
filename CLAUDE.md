@@ -82,21 +82,24 @@ images/brand/              Favicon + logo assets derived from the client-
                           If the logo image ever changes, redo the crop/
                           transparency processing from the new source file
                           rather than hand-editing the PNGs.
-fonts/                    ProximaNova-Thin.woff2 — a licensed font (Mark
-                          Simonson / Proxima Nova, purchased by the client),
-                          self-hosted via @font-face in styles.css since
-                          it isn't on Google Fonts. Only the Thin (100)
-                          weight has been purchased/added — don't reference
-                          any other font-weight against 'Proxima Nova' or
-                          the browser will synthesize a fake bold from the
-                          thin outline. Source .otf kept locally in
+fonts/                    ProximaNova-{Thin,Regular,Semibold,Bold,Black}.woff2
+                          — the full licensed family (Mark Simonson /
+                          Proxima Nova, purchased by the client), self-
+                          hosted via @font-face in styles.css since it
+                          isn't on Google Fonts. Five weights are bought
+                          and declared: 100 (Thin), 400 (Regular), 600
+                          (Semibold), 700 (Bold), 900 (Black) — any other
+                          font-weight against 'Proxima Nova' will make the
+                          browser synthesize a fake bold/thin instead of
+                          using a real purchased weight, so stick to those
+                          five. Source .otf files are kept locally in
                           fonts/source/ but gitignored — this repo is
                           public on GitHub, and committing the raw
-                          purchased font file would let anyone clone it
+                          purchased font files would let anyone clone them
                           for free regardless of what the license actually
-                          permits. Only the woff2 (the actual web-embed
-                          deliverable) is committed. Buying another weight
-                          means repeating the same woff2_compress
+                          permits. Only the woff2s (the actual web-embed
+                          deliverable) are committed. Buying another
+                          weight means repeating the same woff2_compress
                           conversion and adding another @font-face block
                           for that weight, keeping the new .otf local-only
                           the same way.
@@ -217,6 +220,16 @@ rather than improvising a new layout.
   rounds of logo iteration that the other pages haven't caught up to yet
   — don't assume it's intentional design variation; ask before treating
   one pattern as the one to extend to new pages.
+- **index.html-only typography test — `<body class="font-test">` plus an
+  inline `<style>` block in its `<head>`.** Overrides body text, buttons,
+  eyebrows, form fields and the pricing table header from Jost to Proxima
+  Nova, and h1/h2/h3 from Cormorant Garamond to Fraunces (a Google Font,
+  weight 400 for h1, 600 for h2/h3). This is scoped to index.html only,
+  on top of the site-wide defaults still in styles.css (which the other
+  8 pages use unchanged) — it is explicitly a test the user is iterating
+  on, not a decided direction. Don't extend it to other pages or fold it
+  into styles.css until told it's the final choice; don't assume it's
+  "done" just because it's live on index.html.
 - **Mobile nav**: hamburger toggle is vanilla JS (`script.js`), toggling
   `.is-open` classes on `#nav-toggle` and `#mobile-menu` — no framework
   state, no external menu library. The nav is deliberately short —

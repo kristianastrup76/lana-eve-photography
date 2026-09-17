@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap">
 <link rel="stylesheet" href="styles.css">
 <link rel="canonical" href="https://lanaevephotography.co.uk/">
 <meta property="og:type" content="website">
@@ -52,8 +52,24 @@
   "description": "Boutique home-studio photography in Kirkcaldy, Fife, offering baby & newborn, cake smash, family, twins, school, wedding, and Christmas mini sessions."
 }
 </script>
+<style>
+/* TEST: page-scoped restyle — Proxima Nova (licensed, self-hosted) for
+   body/UI text, Fraunces for h1/h2/h3, in place of Jost + Cormorant
+   Garamond. Remove this block (and the 'font-test' body class) to go
+   back to the site-wide defaults in styles.css. */
+body.font-test { font-family: 'Proxima Nova', system-ui, sans-serif; }
+body.font-test h1 { font-family: 'Fraunces', serif; font-weight: 400; }
+body.font-test h2, body.font-test h3 { font-family: 'Fraunces', serif; font-weight: 600; }
+body.font-test .eyebrow { font-family: 'Proxima Nova', sans-serif; font-weight: 600; }
+body.font-test .btn-primary { font-family: 'Proxima Nova', sans-serif; font-weight: 600; }
+body.font-test .btn-secondary { font-family: 'Proxima Nova', sans-serif; font-weight: 600; }
+body.font-test .field input,
+body.font-test .field select,
+body.font-test .field textarea { font-family: 'Proxima Nova', sans-serif; }
+body.font-test .pricing-table thead th { font-family: 'Proxima Nova', sans-serif; font-weight: 700; }
+</style>
 </head>
-<body>
+<body class="font-test">
 
 <!-- NAV -->
 <header class="site-header">
