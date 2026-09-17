@@ -66,27 +66,40 @@ images/brand/              Favicon + logo assets derived from the client-
                           rose mark with "LANA EVE PHOTOGRAPHY" wordmark
                           below it — source original and the isolated icon
                           crop are kept in images/brand/source/ for future
-                          re-processing). favicon-192.png and favicon-32.png
-                          are the icon alone, transparent background,
-                          referenced via <link rel="icon"> on every page;
-                          apple-touch-icon.png (180x180) is the same icon on
-                          an opaque cream background (iOS doesn't handle
-                          transparent touch icons well); logo-512.png
-                          (512x512, transparent) is the icon alone, used as
-                          "logo" in index.html's LocalBusiness JSON-LD.
-                          logo-full.png is different: the *whole* client
-                          logo (icon + wordmark together, transparent
-                          background), used as a single image in the
-                          index.html nav in place of the old icon+CSS-text
-                          lockup — "Lana Eve Photography" is baked into this
-                          image rather than being real text, so it carries
-                          an explicit alt attribute. Only index.html uses
-                          logo-full.png so far; the other 8 pages still use
-                          the old inline-SVG icon + logo-text/logo-sub CSS
-                          lockup and haven't been updated to match yet. If
-                          the logo image ever changes, redo the crop/
+                          re-processing). favicon-192.png, favicon-32.png,
+                          and logo-icon.png are all the icon alone
+                          (transparent background) at different sizes —
+                          the first two for <link rel="icon">, logo-icon.png
+                          for the nav (see below); apple-touch-icon.png
+                          (180x180) is the same icon on an opaque cream
+                          background (iOS doesn't handle transparent touch
+                          icons well); logo-512.png (512x512, transparent)
+                          is the icon alone, used as "logo" in index.html's
+                          LocalBusiness JSON-LD. logo-full.png (icon +
+                          wordmark baked into one image) was a prior
+                          approach, now unused by any page but kept in case
+                          it's wanted again — don't delete without asking.
+                          If the logo image ever changes, redo the crop/
                           transparency processing from the new source file
                           rather than hand-editing the PNGs.
+fonts/                    ProximaNova-Thin.woff2 — a licensed font (Mark
+                          Simonson / Proxima Nova, purchased by the client),
+                          self-hosted via @font-face in styles.css since
+                          it isn't on Google Fonts. Only the Thin (100)
+                          weight has been purchased/added — don't reference
+                          any other font-weight against 'Proxima Nova' or
+                          the browser will synthesize a fake bold from the
+                          thin outline. Source .otf kept locally in
+                          fonts/source/ but gitignored — this repo is
+                          public on GitHub, and committing the raw
+                          purchased font file would let anyone clone it
+                          for free regardless of what the license actually
+                          permits. Only the woff2 (the actual web-embed
+                          deliverable) is committed. Buying another weight
+                          means repeating the same woff2_compress
+                          conversion and adding another @font-face block
+                          for that weight, keeping the new .otf local-only
+                          the same way.
 robots.txt                Allows all crawlers except backdrops.html; points to
                           sitemap.xml
 sitemap.xml               Lists the 8 public pages (not backdrops.html, which
@@ -187,6 +200,23 @@ rather than improvising a new layout.
   icon at smaller scale rather than reusing Weddings' rings or Family's
   people shapes), graduation cap (School), interlocking rings (Weddings),
   simple 3-line snowflake (Christmas).
+- **Nav logo — currently inconsistent between pages, check before assuming
+  either is "the" pattern.** `index.html` uses a stacked lockup
+  (`.logo-link-stacked`): `logo-icon.png` on top, then real text below it
+  — `.logo-title` ("Lana Eve") and `.logo-sub2` ("Photography"), both set
+  in `'Proxima Nova'` weight 100 (the licensed font in `fonts/`, see the
+  file-structure note above), all-caps, with `.logo-sub2`'s letter-spacing
+  hand-tuned (by measuring actual rendered pixel widths in a browser, not
+  guessed) so "PHOTOGRAPHY" spans the exact same width as "LANA EVE" — if
+  either line's font, size, or weight changes, re-measure and retune that
+  letter-spacing rather than eyeballing it, since the two are meant to
+  align. The other 8 pages (7 galleries + backdrops) still use the older
+  `.logo-link` pattern: the original inline-SVG icon plus `.logo-text`/
+  `.logo-sub` CSS (Cormorant Garamond + Jost, icon-left-text-right, not
+  stacked). This split exists because the homepage went through many
+  rounds of logo iteration that the other pages haven't caught up to yet
+  — don't assume it's intentional design variation; ask before treating
+  one pattern as the one to extend to new pages.
 - **Mobile nav**: hamburger toggle is vanilla JS (`script.js`), toggling
   `.is-open` classes on `#nav-toggle` and `#mobile-menu` — no framework
   state, no external menu library. The nav is deliberately short —

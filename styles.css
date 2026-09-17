@@ -12,6 +12,14 @@
   --field-border: #e6d5c6;
 }
 
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('fonts/ProximaNova-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -49,6 +57,11 @@ img { max-width: 100%; }
 .logo-link { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--ink); line-height: 1; }
 .logo-sub { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; font-weight: 600; color: #8a6c58; }
+
+.logo-link-stacked { flex-direction: column; gap: 4px; }
+.logo-text-stack { display: flex; flex-direction: column; align-items: center; }
+.logo-title { font-family: 'Proxima Nova', sans-serif; font-weight: 100; font-size: 22px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); line-height: 1.3; }
+.logo-sub2 { font-family: 'Proxima Nova', sans-serif; font-weight: 100; font-size: 13px; text-transform: uppercase; color: #8a6c58; line-height: 1.3; letter-spacing: 0.095em; }
 .nav-links-desktop { display: flex; align-items: center; gap: 30px; }
 .nav-right { display: flex; align-items: center; gap: 14px; }
 .nav-toggle { display: none; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--field-border); background: var(--card-bg); cursor: pointer; padding: 0; flex: 0 0 auto; }

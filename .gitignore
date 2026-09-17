@@ -3,3 +3,6 @@
 node_modules
 .wrangler
 /Pics for Lana Eve Photography galleries/
+
+# Licensed font source files — never redistribute via the public repo
+/fonts/source/
