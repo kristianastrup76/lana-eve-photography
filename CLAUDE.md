@@ -61,21 +61,32 @@ images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           else with it.)
 images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
                           only by backdrops.html
-images/brand/              Favicon + logo PNGs rendered from the nav logo
-                          mark's SVG paths (styles.css/header markup is
-                          still the source of truth for the inline SVG used
-                          in the header itself — these are separate static
-                          exports for contexts that can't use inline SVG):
-                          favicon-192.png and favicon-32.png (transparent,
-                          referenced via <link rel="icon"> on every page),
-                          apple-touch-icon.png (180x180, on cream circle
-                          backdrop), and logo-512.png (512x512, same cream
-                          circle treatment, referenced as "logo" in
-                          index.html's LocalBusiness JSON-LD so Google can
-                          show it in search results/knowledge panel). If
-                          the logo mark ever changes, regenerate all four
-                          from the updated SVG rather than hand-editing
-                          the PNGs.
+images/brand/              Favicon + logo assets derived from the client-
+                          supplied logo image (a rose-gold camera-aperture/
+                          rose mark with "LANA EVE PHOTOGRAPHY" wordmark
+                          below it — source original and the isolated icon
+                          crop are kept in images/brand/source/ for future
+                          re-processing). favicon-192.png and favicon-32.png
+                          are the icon alone, transparent background,
+                          referenced via <link rel="icon"> on every page;
+                          apple-touch-icon.png (180x180) is the same icon on
+                          an opaque cream background (iOS doesn't handle
+                          transparent touch icons well); logo-512.png
+                          (512x512, transparent) is the icon alone, used as
+                          "logo" in index.html's LocalBusiness JSON-LD.
+                          logo-full.png is different: the *whole* client
+                          logo (icon + wordmark together, transparent
+                          background), used as a single image in the
+                          index.html nav in place of the old icon+CSS-text
+                          lockup — "Lana Eve Photography" is baked into this
+                          image rather than being real text, so it carries
+                          an explicit alt attribute. Only index.html uses
+                          logo-full.png so far; the other 8 pages still use
+                          the old inline-SVG icon + logo-text/logo-sub CSS
+                          lockup and haven't been updated to match yet. If
+                          the logo image ever changes, redo the crop/
+                          transparency processing from the new source file
+                          rather than hand-editing the PNGs.
 robots.txt                Allows all crawlers except backdrops.html; points to
                           sitemap.xml
 sitemap.xml               Lists the 8 public pages (not backdrops.html, which

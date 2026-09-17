@@ -45,8 +45,8 @@ img { max-width: 100%; }
 
 /* Nav */
 .site-header { border-bottom: 1px solid var(--border); background: rgba(251,245,239,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 20; }
-.nav-row { display: flex; align-items: center; justify-content: space-between; height: 84px; gap: 24px; }
-.logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-row { display: flex; align-items: center; justify-content: space-between; min-height: 84px; padding-block: 14px; gap: 24px; }
+.logo-link { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--ink); line-height: 1; }
 .logo-sub { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; font-weight: 600; color: #8a6c58; }
 .nav-links-desktop { display: flex; align-items: center; gap: 30px; }
