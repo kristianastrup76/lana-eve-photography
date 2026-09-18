@@ -313,8 +313,9 @@ rather than improvising a new layout.
   separate `<tr>`s, but there's only one Christmas service/gallery/card —
   the Mini Session is a shorter, cheaper package of the same session
   type, not an 8th service. Both rows' CTAs point at `#contact` like
-  normal; there's no separate dropdown option for it in the contact
-  form's session picker.
+  normal, and the contact form's session dropdown has both "Christmas
+  Sessions" and "Christmas Mini Session" as separate options, matching
+  the two pricing rows, even though it's still one gallery/card.
 
 ## Known open items (from the last handover — check before assuming done)
 
