@@ -262,16 +262,16 @@ rather than improvising a new layout.
   Lana actually sends booked clients for that session — it should read
   as short, warm "what to expect / bring" guidance, not a pasted
   enquiry-response email, and should never include specific prices,
-  image counts, or exact durations, since Lana's stock messages have
-  repeatedly not matched the pricing table's numbers (Cakesmash: message
-  said £190 vs table's £200; Baby: message said 70-100 images/~2 hours
-  vs table's 80-100+/2-3hrs; Christmas: message said ~80 images/24-hour
-  delivery vs table's 60+ and the homepage's separate "same-day delivery"
-  claim in the "How a session works" section) — rather than resolve
-  these one at a time, the popups now consistently omit all three kinds
-  of figures so they can't go stale or contradict the pricing table, and
-  the discrepancies themselves are flagged to the user each time rather
-  than silently picked between.
+  image counts, or exact durations. **The pricing table's numbers are
+  the confirmed source of truth for all of that** (the user confirmed
+  this directly) — Lana's stock messages are the outdated ones where
+  they disagree (Cakesmash's message said £190 vs the table's correct
+  £200; Baby's said 70-100 images/~2 hours vs the table's correct
+  80-100+/2-3hrs; Christmas's said ~80 images/24-hour delivery vs the
+  table's correct 60+ and the homepage's own "same-day delivery" claim).
+  Don't add prices/counts/durations to a popup from a new stock message
+  without checking them against the pricing table first, and if a new
+  message disagrees, use the pricing table's figure, not the message's.
 - **Gallery Back button**: `.gallery-topbar` holds a "← Back" link
   (`.gallery-back`, links to `index.html#services`) beside the breadcrumb.
   Keep both on new/edited gallery pages.
