@@ -152,6 +152,9 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>
           <a href="#contact" class="btn-secondary" style="color:#4a3a30;">Enquire about this session</a>
+          <button type="button" class="btn-secondary prep-info-btn" style="color:#4a3a30;" data-session="cakesmash" data-title="Preparing for your Cakesmash &lsquo;n&rsquo; Splash session">How to prepare
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01" stroke-linecap="round"></path></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -579,6 +582,24 @@
     Website by <a href="https://seafieldwebdesign.co.uk" target="_blank" rel="noopener">Seafield Web Design</a>
   </div>
 </footer>
+
+<!-- SESSION PREP INFO MODAL — one shared dialog, content per session lives in
+     the <template> blocks below and is cloned in by script.js -->
+<dialog id="prep-modal" class="prep-modal">
+  <div class="prep-modal-inner">
+    <button type="button" class="prep-modal-close" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <h3 id="prep-modal-title"></h3>
+    <div id="prep-modal-body"></div>
+  </div>
+</dialog>
+
+<template id="prep-cakesmash">
+  <p>The only thing you'll need to bring along is the cake &mdash; everything else, backdrops included, is provided.</p>
+  <p>Have a browse of my Instagram or Facebook and pick two of your favourite backdrop setups. Send me screenshots of your choices a week or two before your session so everything's ready for you when you arrive.</p>
+  <p>On the day, we'll start with family portraits, then some clean, classic photos of your little one (siblings are welcome to join in), before the fun cake smash and a splash to finish in the mini bathtub.</p>
+</template>
 
 <script src="script.js"></script>
 </body>

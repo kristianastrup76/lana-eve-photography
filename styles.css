@@ -68,7 +68,7 @@ img { max-width: 100%; }
 .eyebrow { font-family: 'Proxima Nova', sans-serif; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--accent-text); }
 .btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; font-family: 'Proxima Nova', sans-serif; font-weight: 600; font-size: 16px; color: #fdf9f4; text-decoration: none; box-shadow: 0 10px 24px -10px rgba(120, 60, 30, 0.45); background: var(--accent); border: none; cursor: pointer; transition: transform 160ms ease-out; }
 .btn-primary:active { transform: scale(0.97); }
-.btn-secondary { display: inline-flex; align-items: center; gap: 8px; font-family: 'Proxima Nova', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--accent-text); transition: transform 160ms ease-out; }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; font-family: 'Proxima Nova', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--accent-text); transition: transform 160ms ease-out; border: none; background: none; padding: 0; cursor: pointer; }
 .btn-secondary:active { transform: scale(0.97); }
 .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; }
 .nav-link { font-size: 15px; font-weight: 500; color: #4a3a30; }
@@ -291,6 +291,16 @@ img { max-width: 100%; }
 .lightbox-close { top: -18px; right: -18px; }
 .lightbox-prev { left: -60px; top: 50%; transform: translateY(-50%); }
 .lightbox-next { right: -60px; top: 50%; transform: translateY(-50%); }
+
+/* Session prep info modal */
+.prep-modal { border: none; border-radius: 18px; padding: 0; max-width: 480px; width: calc(100% - 40px); background: var(--card-bg); box-shadow: 0 30px 70px -20px rgba(30,20,14,0.4); }
+.prep-modal::backdrop { background: rgba(30,20,14,0.5); }
+.prep-modal-inner { padding: 34px 30px 30px; position: relative; }
+.prep-modal-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 999px; border: 1px solid var(--border); background: var(--card-bg); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); padding: 0; }
+.prep-modal-close:hover { color: var(--accent-text); }
+.prep-modal h3 { font-size: 21px; color: var(--ink-soft); margin: 0 0 16px; padding-right: 30px; }
+.prep-modal p { font-size: 15px; line-height: 1.6; color: var(--body-text); margin: 0 0 14px; }
+.prep-modal p:last-child { margin-bottom: 0; }
 @media (max-width: 720px) {
   .lightbox-close { top: -52px; right: 0; }
   .lightbox-prev { left: 0; top: auto; bottom: -56px; transform: none; }

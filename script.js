@@ -111,3 +111,31 @@ document.addEventListener('DOMContentLoaded', function () {
     window.history.replaceState(null, '', url.pathname + url.hash);
   }
 });
+
+// Session prep info popup — works on any page with .prep-info-btn buttons,
+// a #prep-modal dialog, and a matching #prep-<session> <template>
+document.addEventListener('DOMContentLoaded', function () {
+  var modal = document.getElementById('prep-modal');
+  var buttons = document.querySelectorAll('.prep-info-btn');
+  if (!modal || !buttons.length) return;
+
+  var titleEl = document.getElementById('prep-modal-title');
+  var bodyEl = document.getElementById('prep-modal-body');
+  var closeBtn = modal.querySelector('.prep-modal-close');
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var template = document.getElementById('prep-' + btn.getAttribute('data-session'));
+      if (!template) return;
+      titleEl.textContent = btn.getAttribute('data-title') || 'How to prepare';
+      bodyEl.innerHTML = '';
+      bodyEl.appendChild(template.content.cloneNode(true));
+      modal.showModal();
+    });
+  });
+
+  closeBtn.addEventListener('click', function () { modal.close(); });
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.close();
+  });
+});

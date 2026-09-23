@@ -243,6 +243,28 @@ rather than improvising a new layout.
   the `<button>`/`<img>` markup inside `.gallery-grid` — works on any page
   that has both a `.gallery-grid` and a `#lightbox`. Keep new galleries
   consistent with this pattern instead of adding a lightbox library.
+- **Session prep info popup (index.html only, one session so far)**: each
+  service card can have a "How to prepare" `<button class="prep-info-btn"
+  data-session="..." data-title="...">` in its link row, alongside "View
+  full gallery"/"Enquire about this session". Only **Cakesmash 'n'
+  Splash** has one right now — the other six don't have prep content yet,
+  don't add buttons for them without real copy to put in first. Clicking
+  a button opens one shared `<dialog id="prep-modal">` (native HTML
+  dialog, not a custom overlay — free focus-trapping and Esc-to-close),
+  whose content is cloned in from a `<template id="prep-{session}">`
+  block sitting just above `<script src="script.js">`, keyed by the
+  button's `data-session` attribute. The JS for this lives in a single
+  `DOMContentLoaded` block in `script.js` ("Session prep info popup") and
+  needs no changes to add a new session — just add another button with a
+  new `data-session` value and a matching `<template id="prep-{that
+  session}">` with the real content. Content for each session's popup is
+  adapted from what Lana actually sends booked clients (see her Cakesmash
+  message this was built from) — it should read as short, warm "what to
+  expect / bring" guidance, not a pasted enquiry-response email, and
+  should never include pricing (that lives only in the pricing table —
+  the source message for Cakesmash quoted £190, which doesn't match the
+  pricing table's £200, so pricing was deliberately left out of the
+  popup rather than guessing which figure is current).
 - **Gallery Back button**: `.gallery-topbar` holds a "← Back" link
   (`.gallery-back`, links to `index.html#services`) beside the breadcrumb.
   Keep both on new/edited gallery pages.
