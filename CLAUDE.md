@@ -243,28 +243,35 @@ rather than improvising a new layout.
   the `<button>`/`<img>` markup inside `.gallery-grid` — works on any page
   that has both a `.gallery-grid` and a `#lightbox`. Keep new galleries
   consistent with this pattern instead of adding a lightbox library.
-- **Session prep info popup (index.html only, one session so far)**: each
-  service card can have a "How to prepare" `<button class="prep-info-btn"
-  data-session="..." data-title="...">` in its link row, alongside "View
-  full gallery"/"Enquire about this session". Only **Cakesmash 'n'
-  Splash** has one right now — the other six don't have prep content yet,
-  don't add buttons for them without real copy to put in first. Clicking
-  a button opens one shared `<dialog id="prep-modal">` (native HTML
-  dialog, not a custom overlay — free focus-trapping and Esc-to-close),
-  whose content is cloned in from a `<template id="prep-{session}">`
-  block sitting just above `<script src="script.js">`, keyed by the
-  button's `data-session` attribute. The JS for this lives in a single
-  `DOMContentLoaded` block in `script.js` ("Session prep info popup") and
-  needs no changes to add a new session — just add another button with a
-  new `data-session` value and a matching `<template id="prep-{that
-  session}">` with the real content. Content for each session's popup is
-  adapted from what Lana actually sends booked clients (see her Cakesmash
-  message this was built from) — it should read as short, warm "what to
-  expect / bring" guidance, not a pasted enquiry-response email, and
-  should never include pricing (that lives only in the pricing table —
-  the source message for Cakesmash quoted £190, which doesn't match the
-  pricing table's £200, so pricing was deliberately left out of the
-  popup rather than guessing which figure is current).
+- **Session prep info popup (index.html only, 5 of 7 sessions so far)**:
+  each service card can have a "How to prepare" `<button
+  class="prep-info-btn" data-session="..." data-title="...">` in its link
+  row, alongside "View full gallery"/"Enquire about this session". **Baby
+  & Newborn, Cakesmash 'n' Splash, Family, Twins, and Christmas** have one
+  now — **School and Weddings still don't**, don't add buttons for them
+  without real copy from Lana to put in first. Clicking a button opens
+  one shared `<dialog id="prep-modal">` (native HTML dialog, not a custom
+  overlay — free focus-trapping and Esc-to-close), whose content is
+  cloned in from a `<template id="prep-{session}">` block sitting just
+  above `<script src="script.js">`, keyed by the button's `data-session`
+  attribute. The JS for this lives in a single `DOMContentLoaded` block
+  in `script.js` ("Session prep info popup") and needs no changes to add
+  a new session — just add another button with a new `data-session`
+  value and a matching `<template id="prep-{that session}">` with the
+  real content. Content for each session's popup is adapted from what
+  Lana actually sends booked clients for that session — it should read
+  as short, warm "what to expect / bring" guidance, not a pasted
+  enquiry-response email, and should never include specific prices,
+  image counts, or exact durations, since Lana's stock messages have
+  repeatedly not matched the pricing table's numbers (Cakesmash: message
+  said £190 vs table's £200; Baby: message said 70-100 images/~2 hours
+  vs table's 80-100+/2-3hrs; Christmas: message said ~80 images/24-hour
+  delivery vs table's 60+ and the homepage's separate "same-day delivery"
+  claim in the "How a session works" section) — rather than resolve
+  these one at a time, the popups now consistently omit all three kinds
+  of figures so they can't go stale or contradict the pricing table, and
+  the discrepancies themselves are flagged to the user each time rather
+  than silently picked between.
 - **Gallery Back button**: `.gallery-topbar` holds a "← Back" link
   (`.gallery-back`, links to `index.html#services`) beside the breadcrumb.
   Keep both on new/edited gallery pages.
