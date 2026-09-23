@@ -148,6 +148,10 @@ img { max-width: 100%; }
 .service-card-body > svg { stroke-width: 2; }
 .service-card-body h3 { font-size: 23px; color: var(--ink-soft); }
 .service-card-body p { font-size: 15px; line-height: 1.6; color: var(--body-text); }
+.service-card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 6px; }
+.service-card-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.card-pill { display: inline-flex; align-items: center; gap: 6px; font-family: 'Proxima Nova', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; background: var(--card-bg); cursor: pointer; text-decoration: none; transition: color 150ms ease, border-color 150ms ease; }
+.card-pill:hover { color: var(--accent-text); border-color: var(--accent-text); }
 
 /* Pricing table */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }

@@ -243,10 +243,23 @@ rather than improvising a new layout.
   the `<button>`/`<img>` markup inside `.gallery-grid` — works on any page
   that has both a `.gallery-grid` and a `#lightbox`. Keep new galleries
   consistent with this pattern instead of adding a lightbox library.
+- **Service card action row — one primary link + a pill group, not a flat
+  list.** `.service-card-actions` (replaces the old plain flex div) holds
+  "View full gallery" (`.btn-secondary`, accent-colored, the one primary
+  action) plus a `.service-card-pills` group containing "Enquire" and,
+  where it exists, "How to prepare" — both styled as small bordered pill
+  buttons via `.card-pill` (works identically on `<a>` and `<button>`).
+  This replaced an earlier version where all three sat as equal-looking
+  plain text links in one wrapping row, which read as a loose list and
+  only got more cramped as "How to prepare" was added to more cards — the
+  pill grouping was chosen specifically because it stays clean whether a
+  card has one pill (just Enquire, e.g. School/Weddings right now) or two.
+  If an 8th service or a new action is ever added, keep this shape: one
+  `.btn-secondary` link, everything else goes in `.service-card-pills`.
 - **Session prep info popup (index.html only, 5 of 7 sessions so far)**:
-  each service card can have a "How to prepare" `<button
-  class="prep-info-btn" data-session="..." data-title="...">` in its link
-  row, alongside "View full gallery"/"Enquire about this session". **Baby
+  each service card can have a "How to prepare" `<button class="card-pill
+  prep-info-btn" data-session="..." data-title="...">` in its
+  `.service-card-pills` group, alongside the "Enquire" pill. **Baby
   & Newborn, Cakesmash 'n' Splash, Family, Twins, and Christmas** have one
   now — **School and Weddings still don't**, don't add buttons for them
   without real copy from Lana to put in first. Clicking a button opens
