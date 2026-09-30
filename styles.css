@@ -221,6 +221,9 @@ img { max-width: 100%; }
 .contact-form-success.is-visible { display: flex; }
 .contact-form-success h3 { font-size: 21px; color: var(--ink-soft); }
 .contact-form-success p { font-size: 15px; color: var(--body-text); }
+.contact-form-error { display: none; margin: 0; padding: 12px 16px; border: 1px solid var(--field-border); border-radius: 12px; background: var(--tan); font-size: 14px; color: var(--accent-text); }
+.contact-form-error.is-visible { display: block; }
+.contact-form-error a { color: var(--accent-text); text-decoration: underline; }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 30px 0; }

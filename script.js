@@ -97,19 +97,38 @@ document.addEventListener('dragstart', function (e) {
   if (e.target.tagName === 'IMG') e.preventDefault();
 });
 
-// Contact form success state — shows after FormSubmit.co redirects back with ?sent=true
+// Contact form — submits to Formspree over AJAX (works on Formspree's free
+// plan, which doesn't support a custom post-submit redirect) so the existing
+// success card still shows without a full page reload; falls back to a
+// plain POST (Formspree's own thank-you page) if JS doesn't run at all.
 document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('contact-form');
   var success = document.getElementById('contact-form-success');
-  if (!form || !success) return;
-  if (new URLSearchParams(window.location.search).get('sent') === 'true') {
-    form.style.display = 'none';
-    success.classList.add('is-visible');
-    // Drop ?sent=true from the URL so refreshing doesn't re-show the success state
-    var url = new URL(window.location.href);
-    url.searchParams.delete('sent');
-    window.history.replaceState(null, '', url.pathname + url.hash);
-  }
+  var error = document.getElementById('contact-form-error');
+  if (!form || !success || !error) return;
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var submitLabel = submitBtn.textContent;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    error.classList.remove('is-visible');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Form submission failed');
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+    }).catch(function () {
+      error.classList.add('is-visible');
+      submitBtn.disabled = false;
+      submitBtn.textContent = submitLabel;
+    });
+  });
 });
 
 // Session prep info popup — works on any page with .prep-info-btn buttons,

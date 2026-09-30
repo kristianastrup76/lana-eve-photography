@@ -369,10 +369,22 @@ rather than improvising a new layout.
   (70–100+, 1hr), Twins £350 (100+, 2–3hrs), School £130 (50+, 45min–1hr),
   Weddings from £800 (600+, bridal prep to meal), Christmas Sessions £150
   (60+, 45min–1hr), Christmas Mini Session £100 (30+, 25min).
-- **Contact form has no backend.** The form in `index.html` (`action="#"`)
-  doesn't send anywhere yet. It needs a real backend (Formspree, or
-  similar) wired up before it's live-usable. Its session dropdown already
-  lists all seven options.
+- **Contact form is wired to Formspree** (`action="https://formspree.io/f/xgavdqzd"`,
+  free plan, targeting `lana.astrupnielsen@googlemail.com`), submitted via
+  `fetch()` in script.js rather than a plain POST — Formspree's free plan
+  doesn't support a custom post-submit redirect, so AJAX is what lets the
+  site keep its own "your message is on its way" success card instead of
+  Formspree's generic one. On a genuine JS failure the form still falls
+  back to a plain POST (Formspree's own thank-you page, not the site's).
+  A visible `#contact-form-error` message appears if the fetch fails or
+  Formspree returns a non-OK response — added after a real incident where
+  the previous provider (FormSubmit.co) silently swallowed submissions
+  with no visible error for weeks. Free plan caps at 50 submissions/month
+  — fine for this business's volume, but worth knowing if it's ever hit.
+  Previously used FormSubmit.co (`action="https://formsubmit.co/lana.astrupnielsen@gmail.com"`,
+  note the mismatched `gmail.com` vs the `googlemail.com` used everywhere
+  else) — switched away after FormSubmit had a full-service outage that a
+  customer caught via a failed enquiry.
 - **Gallery photos are real for all seven sessions now** — Baby (61),
   Cakesmash (50), Family (39), School (34), Twins (14), Weddings (58),
   and Christmas (31), sourced from full-resolution originals in the
