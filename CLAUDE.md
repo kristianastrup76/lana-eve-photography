@@ -59,14 +59,14 @@ images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           service, or reshoots) lands the same way, move it
                           inside that folder first, before doing anything
                           else with it.)
-images/backdrops/01.jpg..83.jpg   83 real square (1:1) backdrop swatches used
+images/backdrops/01.jpg..82.jpg   82 real square (1:1) backdrop swatches used
                           only by backdrops.html, sourced from the client-
                           root "Pics for Lana Eve Photography galleries/Some
                           Backdrops/" folder (gitignored) and center-cropped
                           to 1:1, resized to 1280px, ~78% JPEG quality, same
-                          as the session galleries. 69 of these (01-69) are
+                          as the session galleries. 68 of these (01-68) are
                           empty shots of the backdrop/prop set alone; the
-                          other 14 (70-83) are real client session photos
+                          other 14 (69-82) are real client session photos
                           (cakesmash, twins, school) that happen to use one
                           of these backdrops, so they show an identifiable
                           child rather than an empty set — flagged to the
@@ -432,7 +432,7 @@ rather than improvising a new layout.
   replaced now, not running alongside anything. Vercel and the
   `*.workers.dev` URL still exist as build previews but the custom
   domain is what's shared publicly now.
-- **Backdrop swatches are real now** — 83 real photos replaced the old 10
+- **Backdrop swatches are real now** — 82 real photos replaced the old 10
   placeholder gradient tiles (see the file-structure note above for the
   empty-set-vs-real-client-photo breakdown and why 14 of them show a real
   child on purpose). If more backdrop photos get dropped in later,
