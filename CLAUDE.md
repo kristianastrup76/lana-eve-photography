@@ -59,22 +59,27 @@ images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           service, or reshoots) lands the same way, move it
                           inside that folder first, before doing anything
                           else with it.)
-images/backdrops/01.jpg..69.jpg   69 real square (1:1) backdrop swatches used
+images/backdrops/01.jpg..83.jpg   83 real square (1:1) backdrop swatches used
                           only by backdrops.html, sourced from the client-
                           root "Pics for Lana Eve Photography galleries/Some
-                          Backdrops/" folder (gitignored, 83 original photos)
-                          and center-cropped to 1:1, resized to 1280px,
-                          ~78% JPEG quality, same as the session galleries.
-                          14 of the 83 source photos were excluded because
-                          they show an identifiable child from a real client
-                          session rather than an empty backdrop/prop set —
-                          this page is a backdrop-design picker for a
-                          prospective/booked client, not a place to show
-                          other families' children, so only genuinely empty
-                          backdrop shots are eligible regardless of what
-                          else is in the source folder. If more backdrop
-                          photos are added later, apply the same filter
-                          before processing them in.
+                          Backdrops/" folder (gitignored) and center-cropped
+                          to 1:1, resized to 1280px, ~78% JPEG quality, same
+                          as the session galleries. 69 of these (01-69) are
+                          empty shots of the backdrop/prop set alone; the
+                          other 14 (70-83) are real client session photos
+                          (cakesmash, twins, school) that happen to use one
+                          of these backdrops, so they show an identifiable
+                          child rather than an empty set — flagged to the
+                          user as a privacy consideration before including
+                          them, and the user explicitly asked for them to
+                          be included anyway, so this is a deliberate,
+                          confirmed choice, not an oversight. Alt text for
+                          those 14 is intentionally generic (no names, no
+                          identifying details beyond the general scene),
+                          matching the privacy convention used for real
+                          children elsewhere on the site. If more backdrop
+                          photos are added later, ask the user the same
+                          question rather than assuming either way.
 images/brand/              Favicon + logo assets derived from the client-
                           supplied logo image (a rose-gold camera-aperture/
                           rose mark with "LANA EVE PHOTOGRAPHY" wordmark
@@ -427,11 +432,12 @@ rather than improvising a new layout.
   replaced now, not running alongside anything. Vercel and the
   `*.workers.dev` URL still exist as build previews but the custom
   domain is what's shared publicly now.
-- **Backdrop swatches are real now** — 69 real photos replaced the old 10
+- **Backdrop swatches are real now** — 83 real photos replaced the old 10
   placeholder gradient tiles (see the file-structure note above for the
-  processing/filtering details). If more backdrop photos get dropped in
-  later, add/remove numbered `<button>` blocks in `backdrops.html` to
-  match, same as any other gallery.
+  empty-set-vs-real-client-photo breakdown and why 14 of them show a real
+  child on purpose). If more backdrop photos get dropped in later,
+  add/remove numbered `<button>` blocks in `backdrops.html` to match,
+  same as any other gallery.
 
 ## Deployment
 
