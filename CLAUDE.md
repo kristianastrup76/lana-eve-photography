@@ -59,8 +59,22 @@ images/<session>/01.jpg..NN.jpg   Real gallery photos for all seven sessions:
                           service, or reshoots) lands the same way, move it
                           inside that folder first, before doing anything
                           else with it.)
-images/backdrops/01.jpg..10.jpg   10 square (1:1) backdrop swatches used
-                          only by backdrops.html
+images/backdrops/01.jpg..69.jpg   69 real square (1:1) backdrop swatches used
+                          only by backdrops.html, sourced from the client-
+                          root "Pics for Lana Eve Photography galleries/Some
+                          Backdrops/" folder (gitignored, 83 original photos)
+                          and center-cropped to 1:1, resized to 1280px,
+                          ~78% JPEG quality, same as the session galleries.
+                          14 of the 83 source photos were excluded because
+                          they show an identifiable child from a real client
+                          session rather than an empty backdrop/prop set —
+                          this page is a backdrop-design picker for a
+                          prospective/booked client, not a place to show
+                          other families' children, so only genuinely empty
+                          backdrop shots are eligible regardless of what
+                          else is in the source folder. If more backdrop
+                          photos are added later, apply the same filter
+                          before processing them in.
 images/brand/              Favicon + logo assets derived from the client-
                           supplied logo image (a rose-gold camera-aperture/
                           rose mark with "LANA EVE PHOTOGRAPHY" wordmark
@@ -413,13 +427,11 @@ rather than improvising a new layout.
   replaced now, not running alongside anything. Vercel and the
   `*.workers.dev` URL still exist as build previews but the custom
   domain is what's shared publicly now.
-- **Backdrop swatches are placeholders too.** All 10 images in
-  `images/backdrops/` are generated plain gradient tiles (no session-style
-  label baked in — the number badge in the HTML does that job instead).
-  Swap them for real backdrop photos in place, same filenames (`01.jpg`–
-  `10.jpg`), same 1:1 square shape works best. Add/remove numbered
-  `<button>` blocks in `backdrops.html` to match however many real
-  backdrops actually exist.
+- **Backdrop swatches are real now** — 69 real photos replaced the old 10
+  placeholder gradient tiles (see the file-structure note above for the
+  processing/filtering details). If more backdrop photos get dropped in
+  later, add/remove numbered `<button>` blocks in `backdrops.html` to
+  match, same as any other gallery.
 
 ## Deployment
 
