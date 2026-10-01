@@ -267,10 +267,6 @@ img { max-width: 100%; }
 }
 
 /* Backdrop chooser (private, unlisted page for booked clients) */
-.backdrop-note { display: flex; gap: 14px; align-items: flex-start; background: var(--tan); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; margin-bottom: clamp(32px,5vw,48px); }
-.backdrop-note svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
-.backdrop-note p { font-size: 15px; line-height: 1.65; color: var(--body-text); }
-.backdrop-note strong { color: var(--ink-soft); }
 .backdrop-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 16px; padding-bottom: clamp(56px,7vw,88px); }
 .backdrop-grid button { position: relative; padding: 0; border: none; background: none; cursor: zoom-in; border-radius: 14px; overflow: hidden; aspect-ratio: 1/1; display: block; transition: transform 160ms ease-out; }
 .backdrop-grid button:active { transform: scale(0.97); }
